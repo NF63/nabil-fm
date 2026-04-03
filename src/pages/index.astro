@@ -18,15 +18,21 @@ import PersonalSection from '../components/PersonalSection.astro';
 
     <!-- Hero -->
     <div class="profile-hero" id="intro">
-        <span class="marginnote">Based in Amsterdam. Previously Dubai, Doha, London.</span>
         <h1>Nabil Fahim</h1>
-        <div class="profile-descriptor">Supply growth marketing at Booking.com. Building tools that find demand before it arrives.<label for="mn-1" class="marginnote-symbol">+</label><input type="checkbox" id="mn-1" class="sidenote-checkbox"></div>
+        <div class="profile-descriptor">Supply growth marketing at Booking.com. Building tools that find demand before it arrives.<span class="mn-trigger" data-note="mn-1">+</span></div>
         <a href="/the-margin/" class="profile-link">Read The Margin &rarr;</a>
     </div>
 
     <CareerSection />
 
     <PersonalSection />
+
+    <!-- Margin notes: positioned by JS to align with their + triggers -->
+    <div slot="notes">
+        <div class="margin-note" data-for="mn-1">Based in Amsterdam. Previously Dubai, Doha, London.</div>
+        <div class="margin-note" data-for="mn-2">The .md filenames are deliberate. Everything here is a living document.</div>
+        <div class="margin-note" data-for="mn-3">Still looking for a good bass amp in Amsterdam. Recommendations welcome.</div>
+    </div>
 
 <script is:inline>
     // Section card accordion - one section at a time
@@ -186,5 +192,42 @@ import PersonalSection from '../components/PersonalSection.astro';
 
     // Initial state
     updateActiveDot('intro');
+
+    // ============================================================
+    // Margin notes - JS positioning
+    // Each .margin-note[data-for="X"] aligns with .mn-trigger[data-note="X"]
+    // ============================================================
+    function positionMarginNotes() {
+        var main = document.querySelector('.profile-main');
+        if (!main) return;
+        var mainTop = main.getBoundingClientRect().top + window.scrollY;
+
+        document.querySelectorAll('.margin-note').forEach(function(note) {
+            var id = note.getAttribute('data-for');
+            var trigger = document.querySelector('.mn-trigger[data-note="' + id + '"]');
+            if (trigger) {
+                var triggerTop = trigger.getBoundingClientRect().top + window.scrollY;
+                note.style.top = (triggerTop - mainTop) + 'px';
+            }
+        });
+    }
+
+    // Position on load
+    positionMarginNotes();
+
+    // Reposition after expand/collapse animations settle
+    document.querySelectorAll('.section-card-header').forEach(function(header) {
+        header.addEventListener('click', function() {
+            setTimeout(positionMarginNotes, 500);
+        });
+    });
+    document.querySelectorAll('.pipeline-node-header').forEach(function(header) {
+        header.addEventListener('click', function() {
+            setTimeout(positionMarginNotes, 500);
+        });
+    });
+
+    // Reposition on resize
+    window.addEventListener('resize', positionMarginNotes);
 </script>
 </Profile>

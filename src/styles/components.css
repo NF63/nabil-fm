@@ -152,6 +152,37 @@
 }
 
 /* ================================================================
+   MARGIN NOTES - JS-positioned container in right padding area
+   Notes are absolutely positioned; JS sets top to match their + trigger
+   ================================================================ */
+.margin-notes {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(var(--margin-width) - 50px);
+    pointer-events: none;
+}
+
+.margin-note {
+    position: absolute;
+    width: 100%;
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    font-style: italic;
+    pointer-events: auto;
+    transition: top 0.3s ease;
+}
+
+.margin-note::before {
+    content: '+ ';
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* ================================================================
    SECTION NAV - Left Margin (mirrors The Margin's depth toggle)
    ================================================================ */
 .section-nav {
@@ -602,39 +633,15 @@
 }
 
 /* ================================================================
-   MARGIN NOTES - Symbol + note (from The Margin)
+   MARGIN NOTE TRIGGER - Inline + symbol
    ================================================================ */
-.marginnote-symbol {
-    cursor: pointer;
+.mn-trigger {
     color: var(--accent);
     font-size: 14px;
     font-weight: 700;
+    cursor: default;
     position: relative;
     top: -1px;
-}
-
-.sidenote-checkbox { display: none; }
-
-.marginnote {
-    float: right;
-    clear: right;
-    margin-right: calc(-1 * var(--margin-width) + 20px);
-    width: calc(var(--margin-width) - 50px);
-    margin-top: -2px;
-    margin-bottom: 16px;
-    font-family: var(--font-serif);
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--text-secondary);
-    font-style: italic;
-    transition: opacity 0.15s ease;
-}
-
-.marginnote::before {
-    content: '+ ';
-    color: var(--accent);
-    font-style: normal;
-    font-weight: 600;
 }
 
 
@@ -830,8 +837,8 @@
 
 .profile-section .pipeline-node-chevron {
     position: absolute;
-    right: 4px;
-    top: 20px;
+    right: 18px;
+    top: 24px;
     transform: rotate(-45deg);
 }
 
@@ -951,26 +958,17 @@
         font-size: 8px;
     }
 
-    /* Main content: full width, reset margin-note padding */
+    /* Main content: full width, hide margin notes container */
     .profile-main {
         padding: 0;
-        padding-right: 0;
     }
 
-    /* Margin notes: inline-expandable on mobile (same as The Margin) */
-    .marginnote-symbol { cursor: pointer; }
-    .marginnote {
+    .margin-notes {
         display: none;
-        float: none;
-        clear: none;
-        margin: 12px 0;
-        width: 100%;
-        padding: 12px 16px;
-        background: var(--expand-bg);
-        border-radius: 6px;
     }
-    .sidenote-checkbox:checked + .marginnote {
-        display: block;
+
+    .mn-trigger {
+        display: none;
     }
 
     /* Hero adjustments */
