@@ -200,30 +200,41 @@ import PersonalSection from '../components/PersonalSection.astro';
     function positionMarginNotes() {
         var main = document.querySelector('.profile-main');
         if (!main) return;
-        var mainTop = main.getBoundingClientRect().top + window.scrollY;
+        var mainRect = main.getBoundingClientRect();
+        var mainTop = mainRect.top + window.scrollY;
 
         document.querySelectorAll('.margin-note').forEach(function(note) {
             var id = note.getAttribute('data-for');
             var trigger = document.querySelector('.mn-trigger[data-note="' + id + '"]');
             if (trigger) {
-                var triggerTop = trigger.getBoundingClientRect().top + window.scrollY;
+                var triggerRect = trigger.getBoundingClientRect();
+                var triggerTop = triggerRect.top + window.scrollY;
                 note.style.top = (triggerTop - mainTop) + 'px';
             }
         });
     }
 
-    // Position on load
-    positionMarginNotes();
+    // Wait for fonts and layout to settle before positioning
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function() {
+            requestAnimationFrame(positionMarginNotes);
+        });
+    } else {
+        window.addEventListener('load', positionMarginNotes);
+    }
 
     // Reposition after expand/collapse animations settle
     document.querySelectorAll('.section-card-header').forEach(function(header) {
         header.addEventListener('click', function() {
-            setTimeout(positionMarginNotes, 500);
+            // Reposition twice: once quickly for the visual snap, once after animation settles
+            setTimeout(positionMarginNotes, 50);
+            setTimeout(positionMarginNotes, 600);
         });
     });
     document.querySelectorAll('.pipeline-node-header').forEach(function(header) {
         header.addEventListener('click', function() {
-            setTimeout(positionMarginNotes, 500);
+            setTimeout(positionMarginNotes, 50);
+            setTimeout(positionMarginNotes, 600);
         });
     });
 
