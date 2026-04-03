@@ -10,8 +10,8 @@ import PersonalSection from '../components/PersonalSection.astro';
         slot="nav"
         sections={[
             { id: 'intro', label: 'nabil.fm' },
-            { id: 'career', label: 'career' },
-            { id: 'personal', label: 'off-duty' }
+            { id: 'career', label: 'career.md' },
+            { id: 'personal', label: 'out-of-office.md' }
         ]}
         activeId="intro"
     />
@@ -19,33 +19,13 @@ import PersonalSection from '../components/PersonalSection.astro';
     <!-- Hero -->
     <div class="profile-hero" id="intro">
         <h1>Nabil Fahim</h1>
-        <div class="profile-descriptor">Supply growth marketing at Booking.com. Building tools that find demand before it arrives.</div>
+        <div class="profile-descriptor">Supply growth marketing at Booking.com. Building tools that find demand before it arrives.<label for="mn-1" class="marginnote-symbol">+</label><input type="checkbox" id="mn-1" class="sidenote-checkbox"><span class="marginnote">Based in Amsterdam. Previously Dubai, Doha, London.</span></div>
         <a href="/the-margin/" class="profile-link">Read The Margin &rarr;</a>
     </div>
 
     <CareerSection />
 
     <PersonalSection />
-
-    <div slot="margin">
-        <!-- Hero margin notes -->
-        <div class="margin-group" data-for="intro">
-            <span class="marginnote-symbol">+</span>
-            <span class="marginnote">Based in Amsterdam. Previously Dubai, Doha, London.</span>
-        </div>
-
-        <!-- Career margin notes -->
-        <div class="margin-group" data-for="career">
-            <span class="marginnote-symbol">+</span>
-            <span class="marginnote">The .md filenames are deliberate. Everything here is a living document.</span>
-        </div>
-
-        <!-- Personal margin notes -->
-        <div class="margin-group" data-for="personal">
-            <span class="marginnote-symbol">+</span>
-            <span class="marginnote">Still looking for a good bass amp in Amsterdam. Recommendations welcome.</span>
-        </div>
-    </div>
 
 <script is:inline>
     // Section card accordion - one section at a time
@@ -134,15 +114,6 @@ import PersonalSection from '../components/PersonalSection.astro';
                 stop.classList.add('active');
             } else {
                 stop.classList.remove('active');
-            }
-        });
-        // Update margin notes
-        document.querySelectorAll('.margin-group').forEach(function(group) {
-            var forSection = group.getAttribute('data-for');
-            if (forSection === activeId) {
-                group.classList.add('active');
-            } else {
-                group.classList.remove('active');
             }
         });
     }

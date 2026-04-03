@@ -29,12 +29,15 @@
 }
 
 /* ================================================================
-   NAV - Logo
+   NAV - Logo (CSS background-image, single download per theme)
    ================================================================ */
 .nav-logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-size: cover;
+    background-image: url('/images/logo-light.png');
     transition: opacity 0.2s ease;
 }
 
@@ -42,19 +45,9 @@
     opacity: 0.8;
 }
 
-.nav-logo-img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+[data-theme="dark"] .nav-logo {
+    background-image: url('/images/logo-dark.png');
 }
-
-/* Light mode: show light logo (dark lines on light bg), hide dark logo */
-.nav-logo-dark { display: none; }
-.nav-logo-light { display: block; }
-
-/* Dark mode: show dark logo (light lines on dark bg), hide light logo */
-[data-theme="dark"] .nav-logo-dark { display: block; }
-[data-theme="dark"] .nav-logo-light { display: none; }
 
 /* ================================================================
    THEME TOGGLE
@@ -105,7 +98,7 @@
 }
 
 /* ================================================================
-   PROFILE - Three Column Grid
+   PROFILE - Layout (left nav + main content with right margin via padding)
    ================================================================ */
 .profile {
     max-width: var(--article-max);
@@ -115,7 +108,7 @@
 
 .profile-grid {
     display: grid;
-    grid-template-columns: var(--toggle-width) 1fr var(--margin-width);
+    grid-template-columns: var(--toggle-width) 1fr;
     gap: 0;
     min-height: 80vh;
 }
@@ -164,19 +157,13 @@
 
 /* ================================================================
    PROFILE - Main Content Column
+   Uses padding-right for margin note area (same technique as The Margin)
    ================================================================ */
 .profile-main {
-    padding: 0 40px;
+    padding: 0 0 0 40px;
+    padding-right: var(--margin-width);
     min-width: 0;
-}
-
-/* ================================================================
-   PROFILE - Right Margin
-   ================================================================ */
-.profile-margin {
-    padding-top: 24px;
-    padding-left: 24px;
-    border-left: 1px solid var(--border);
+    position: relative;
 }
 
 /* ================================================================
@@ -805,6 +792,8 @@
     top: -1px;
 }
 
+.sidenote-checkbox { display: none; }
+
 .marginnote {
     float: right;
     clear: right;
@@ -820,25 +809,7 @@
     transition: opacity 0.15s ease;
 }
 
-/* Profile-specific override: margin notes are in their own grid cell,
-   so float/width calculations from The Margin don't apply */
-.profile-margin .marginnote {
-    float: none;
-    margin-right: 0;
-    width: auto;
-}
 
-/* ================================================================
-   PROFILE - Margin Note Groups (contextual visibility)
-   ================================================================ */
-.margin-group {
-    opacity: 0.4;
-    transition: opacity 0.3s ease;
-}
-
-.margin-group.active {
-    opacity: 1;
-}
 
 /* ================================================================
    HOME PAGE - Page container, hero, article list
@@ -1160,18 +1131,26 @@
         font-size: 8px;
     }
 
-    /* Main content: full width, no side padding */
+    /* Main content: full width, reset margin-note padding */
     .profile-main {
         padding: 0;
+        padding-right: 0;
     }
 
-    /* Margin notes: stack below content */
-    .profile-margin {
-        border-left: none;
-        border-top: 1px solid var(--border);
-        padding-left: 0;
-        padding-top: 32px;
-        margin-top: 48px;
+    /* Margin notes: inline-expandable on mobile (same as The Margin) */
+    .marginnote-symbol { cursor: pointer; }
+    .marginnote {
+        display: none;
+        float: none;
+        clear: none;
+        margin: 12px 0;
+        width: 100%;
+        padding: 12px 16px;
+        background: var(--expand-bg);
+        border-radius: 6px;
+    }
+    .sidenote-checkbox:checked + .marginnote {
+        display: block;
     }
 
     /* Hero adjustments */
