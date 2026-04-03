@@ -1,0 +1,54 @@
+---
+import PipelineNode from './pipeline/PipelineNode.astro';
+---
+
+<div class="profile-gap-divider">
+    <div class="profile-gap-line"></div>
+    <div class="profile-gap-label">Off duty</div>
+    <div class="profile-gap-line"></div>
+</div>
+
+<div id="personal" class="profile-section">
+    <div class="section-header-label">Personal</div>
+    <div class="section-card" data-section-card="personal">
+        <div class="section-card-header">
+            <div class="section-card-title">out-of-office.md</div>
+            <div class="section-card-summary">Bass guitar, Formula 1, side projects, and whatever else doesn't fit in a job title.</div>
+            <div class="section-card-hint">
+                <div class="section-card-chevron"></div>
+                expand
+            </div>
+        </div>
+        <div class="section-card-body">
+            <div class="section-card-content">
+                <div class="pipeline" style="margin-top: 16px;">
+
+                    <PipelineNode step="♫" title="Bass Guitar" id="bass" isGap={true}>
+                        <div class="pipeline-detail">
+                            <div class="pipeline-detail-text">
+                                Playing bass since university. Mostly funk, soul, and jazz. Still looking for a good amp in Amsterdam.
+                            </div>
+                        </div>
+                    </PipelineNode>
+
+                    <PipelineNode step="🏎" title="Formula 1" id="f1" isGap={true}>
+                        <div class="pipeline-detail">
+                            <div class="pipeline-detail-text">
+                                Lifelong fan. The data side of the sport is as interesting as the racing itself.
+                            </div>
+                        </div>
+                    </PipelineNode>
+
+                    <PipelineNode step="⌨" title="Side Projects" id="projects" isGap={true}>
+                        <div class="pipeline-detail">
+                            <div class="pipeline-detail-text">
+                                Building things for the sake of building them. This site, weather dashboards, home automation, whatever scratches the itch.
+                            </div>
+                        </div>
+                    </PipelineNode>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

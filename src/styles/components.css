@@ -734,3 +734,28 @@
     border-color: var(--text-secondary);
     background: transparent;
 }
+
+/* ================================================================
+   PROFILE - Gap Divider
+   ================================================================ */
+.profile-gap-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 48px 0;
+}
+
+.profile-gap-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.profile-gap-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
