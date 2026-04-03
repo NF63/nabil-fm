@@ -253,7 +253,6 @@
     background: var(--expand-bg);
     border: 1px solid var(--border);
     border-radius: 8px;
-    overflow: clip;
     transition: all 0.2s ease;
 }
 
@@ -629,6 +628,13 @@
     color: var(--text-secondary);
     font-style: italic;
     transition: opacity 0.15s ease;
+}
+
+.marginnote::before {
+    content: '+ ';
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 600;
 }
 
 
