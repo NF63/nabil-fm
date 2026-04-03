@@ -150,3 +150,87 @@
     padding-left: 24px;
     border-left: 1px solid var(--border);
 }
+
+/* ================================================================
+   SECTION NAV - Left Margin (mirrors The Margin's depth toggle)
+   ================================================================ */
+.section-nav {
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: calc(var(--toggle-width) - 34px);
+    user-select: none;
+}
+
+.section-track {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
+}
+
+.section-track::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    bottom: 7px;
+    right: 4px;
+    width: 1.5px;
+    background: var(--track-line);
+    z-index: 0;
+}
+
+.section-stop {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    cursor: pointer;
+    padding: 6px 0;
+    border: none;
+    background: none;
+    font: inherit;
+}
+
+.section-stop:focus-visible .section-dot {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.section-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1.5px solid var(--track-line);
+    background: var(--bg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+}
+
+.section-stop.active .section-dot {
+    border-color: var(--accent);
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+    transform: scale(1.15);
+}
+
+.section-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--track-line);
+    margin-right: 7px;
+    transition: color 0.25s ease;
+    white-space: nowrap;
+}
+
+.section-stop.active .section-label { color: var(--accent); }
+.section-stop:hover .section-label { color: var(--text-secondary); }
+.section-stop:hover .section-dot { border-color: var(--text-secondary); }

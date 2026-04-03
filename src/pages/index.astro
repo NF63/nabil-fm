@@ -1,11 +1,18 @@
 ---
 import Profile from '../layouts/Profile.astro';
+import SectionNav from '../components/SectionNav.astro';
 ---
 <Profile title="Nabil Fahim">
 
-    <div slot="nav">
-        <!-- SectionNav component goes here in Task 5 -->
-    </div>
+    <SectionNav
+        slot="nav"
+        sections={[
+            { id: 'intro', label: 'nabil.fm' },
+            { id: 'career', label: 'career' },
+            { id: 'personal', label: 'off-duty' }
+        ]}
+        activeId="intro"
+    />
 
     <!-- Hero -->
     <div class="profile-hero" id="intro">

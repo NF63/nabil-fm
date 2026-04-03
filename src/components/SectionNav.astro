@@ -1,0 +1,22 @@
+---
+interface Props {
+    sections: { id: string; label: string }[];
+    activeId?: string;
+}
+const { sections, activeId = sections[0]?.id } = Astro.props;
+---
+
+<nav class="section-nav" aria-label="Page sections">
+    <div class="section-track">
+        {sections.map((section) => (
+            <button
+                class={`section-stop ${section.id === activeId ? 'active' : ''}`}
+                data-section={section.id}
+                aria-label={`Go to ${section.label}`}
+            >
+                <div class="section-dot"></div>
+                <span class="section-label">{section.label}</span>
+            </button>
+        ))}
+    </div>
+</nav>
