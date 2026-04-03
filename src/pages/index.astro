@@ -124,7 +124,9 @@ import PersonalSection from '../components/PersonalSection.astro';
     });
 
     // ============================================================
-    // IntersectionObserver - track active section
+    // Scroll-based section tracking
+    // Replaces IntersectionObserver for reliable tracking on
+    // short pages and when sections are collapsed
     // ============================================================
     function updateActiveDot(activeId) {
         document.querySelectorAll('.section-stop').forEach(function(stop) {
@@ -145,20 +147,59 @@ import PersonalSection from '../components/PersonalSection.astro';
         });
     }
 
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                updateActiveDot(entry.target.id);
-            }
-        });
-    }, { rootMargin: '-10% 0px -70% 0px' });
+    var sections = [
+        { id: 'intro', el: document.getElementById('intro') },
+        { id: 'career', el: document.getElementById('career') },
+        { id: 'personal', el: document.getElementById('personal') }
+    ].filter(function(s) { return s.el; });
 
-    // Observe hero and sections
-    var heroEl = document.querySelector('.profile-hero');
-    if (heroEl) observer.observe(heroEl);
-    document.querySelectorAll('.profile-section').forEach(function(section) {
-        observer.observe(section);
-    });
+    var lastActiveId = 'intro';
+
+    function trackScroll() {
+        var scrollTop = window.scrollY;
+        var windowHeight = window.innerHeight;
+        var docHeight = document.documentElement.scrollHeight;
+
+        // At the very top -> intro
+        if (scrollTop < 50) {
+            if (lastActiveId !== 'intro') {
+                lastActiveId = 'intro';
+                updateActiveDot('intro');
+            }
+            return;
+        }
+
+        // At the bottom of the page -> last section
+        if (scrollTop + windowHeight >= docHeight - 50) {
+            var lastId = sections[sections.length - 1].id;
+            if (lastActiveId !== lastId) {
+                lastActiveId = lastId;
+                updateActiveDot(lastId);
+            }
+            return;
+        }
+
+        // Find the section whose top is closest to (but above) the viewport centre
+        var viewportTarget = scrollTop + windowHeight * 0.3;
+        var activeId = 'intro';
+
+        for (var i = sections.length - 1; i >= 0; i--) {
+            var rect = sections[i].el.getBoundingClientRect();
+            var sectionTop = rect.top + scrollTop;
+            if (sectionTop <= viewportTarget) {
+                activeId = sections[i].id;
+                break;
+            }
+        }
+
+        if (lastActiveId !== activeId) {
+            lastActiveId = activeId;
+            updateActiveDot(activeId);
+        }
+    }
+
+    window.addEventListener('scroll', trackScroll, { passive: true });
+    trackScroll();
 
     // Initial state
     updateActiveDot('intro');
