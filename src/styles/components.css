@@ -799,7 +799,12 @@
    PROFILE - Margin Note Groups (contextual visibility)
    ================================================================ */
 .margin-group {
+    opacity: 0.6;
     transition: opacity 0.3s ease;
+}
+
+.margin-group.active {
+    opacity: 1;
 }
 
 /* ================================================================
@@ -965,6 +970,53 @@
     border-top: 1px solid var(--border);
     font-size: 14px;
     color: var(--text-secondary);
+}
+
+/* ================================================================
+   PROFILE - Pipeline Node Overrides
+   Restructure from horizontal step|title to vertical stack
+   ================================================================ */
+.profile-section .pipeline-node-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+}
+
+.profile-section .pipeline-node-step {
+    order: 3;
+    width: auto;
+    text-align: left;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--text-faint);
+}
+
+.profile-section .pipeline-node-title-block {
+    order: 1;
+}
+
+.profile-section .pipeline-node-subtitle {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-top: 2px;
+}
+
+.profile-section .pipeline-node-chevron {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+.profile-section .pipeline-node.active .pipeline-node-chevron {
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.profile-section .pipeline-node--gap.active .pipeline-node-chevron {
+    transform: translateY(-50%) rotate(45deg);
 }
 
 /* ================================================================

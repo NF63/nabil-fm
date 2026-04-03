@@ -9,7 +9,6 @@ import PipelineNode from './pipeline/PipelineNode.astro';
 </div>
 
 <div id="personal" class="profile-section">
-    <div class="section-header-label">Personal</div>
     <div class="section-card" data-section-card="personal">
         <div class="section-card-header">
             <div class="section-card-title">out-of-office.md</div>
@@ -23,7 +22,7 @@ import PipelineNode from './pipeline/PipelineNode.astro';
             <div class="section-card-content">
                 <div class="pipeline" style="margin-top: 16px;">
 
-                    <PipelineNode step="♫" title="Bass Guitar" id="bass" isGap={true}>
+                    <PipelineNode step="♫" title="Bass Guitar" id="bass">
                         <div class="pipeline-detail">
                             <div class="pipeline-detail-text">
                                 Playing bass since university. Mostly funk, soul, and jazz. Still looking for a good amp in Amsterdam.
@@ -31,7 +30,7 @@ import PipelineNode from './pipeline/PipelineNode.astro';
                         </div>
                     </PipelineNode>
 
-                    <PipelineNode step="🏎" title="Formula 1" id="f1" isGap={true}>
+                    <PipelineNode step="🏎" title="Formula 1" id="f1">
                         <div class="pipeline-detail">
                             <div class="pipeline-detail-text">
                                 Lifelong fan. The data side of the sport is as interesting as the racing itself.
@@ -39,7 +38,7 @@ import PipelineNode from './pipeline/PipelineNode.astro';
                         </div>
                     </PipelineNode>
 
-                    <PipelineNode step="⌨" title="Side Projects" id="projects" isGap={true}>
+                    <PipelineNode step="⌨" title="Side Projects" id="projects">
                         <div class="pipeline-detail">
                             <div class="pipeline-detail-text">
                                 Building things for the sake of building them. This site, weather dashboards, home automation, whatever scratches the itch.
