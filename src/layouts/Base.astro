@@ -14,6 +14,22 @@ const { title, description = 'Nabil Fahim' } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <meta name="description" content={description}>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-light-32.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-light-16.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-dark-32.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-dark-16.png" media="(prefers-color-scheme: dark)">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/favicon-light-180.png">
+    <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1B1E25" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href={Astro.url.href}>
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={Astro.url.href}>
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <link rel="manifest" href="/site.webmanifest">
     <script is:inline>
         // Runs before render to prevent flash.
         // Priority: localStorage > prefers-color-scheme > route default
@@ -84,6 +100,7 @@ const { title, description = 'Nabil Fahim' } = Astro.props;
                 root.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
             }
+            document.getElementById('themeToggle').setAttribute('aria-label', isDark ? 'Switch to dark mode' : 'Switch to light mode');
             setTimeout(function() { root.classList.remove('theme-transition'); }, 250);
         });
 

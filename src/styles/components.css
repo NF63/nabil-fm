@@ -14,20 +14,6 @@
     align-items: center;
 }
 
-.nav-name {
-    font-family: var(--font-serif);
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text);
-    text-decoration: none;
-    letter-spacing: -0.2px;
-    transition: color 0.2s ease;
-}
-
-.nav-name:hover {
-    color: var(--accent);
-}
-
 /* ================================================================
    NAV - Logo (CSS background-image, single download per theme)
    ================================================================ */
@@ -160,8 +146,7 @@
    Uses padding-right for margin note area (same technique as The Margin)
    ================================================================ */
 .profile-main {
-    padding: 0 0 0 40px;
-    padding-right: var(--margin-width);
+    padding: 0 var(--margin-width) 0 40px;
     min-width: 0;
     position: relative;
 }
@@ -211,6 +196,7 @@
     border: none;
     background: none;
     font: inherit;
+    color: inherit;
 }
 
 .section-stop:focus-visible .section-dot {
@@ -267,7 +253,7 @@
     background: var(--expand-bg);
     border: 1px solid var(--border);
     border-radius: 8px;
-    overflow: hidden;
+    overflow: clip;
     transition: all 0.2s ease;
 }
 
@@ -323,26 +309,24 @@
 
 .section-card.expanded .section-card-chevron {
     transform: rotate(45deg);
+    border-color: var(--accent);
 }
 
 .section-card.expanded .section-card-hint {
     color: var(--accent);
 }
 
-.section-card.expanded .section-card-chevron {
-    border-color: var(--accent);
-}
-
 /* Expandable body */
 .section-card-body {
-    max-height: 0;
+    interpolate-size: allow-keywords;
+    height: 0;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .section-card.expanded .section-card-body {
-    max-height: 3000px;
-    transition: max-height 0.6s cubic-bezier(0.25, 0, 0.2, 1);
+    height: auto;
+    transition: height 0.5s cubic-bezier(0.25, 0, 0.2, 1);
 }
 
 .section-card-content {
@@ -503,14 +487,15 @@
 
 /* Expandable body */
 .pipeline-node-body {
-    max-height: 0;
+    interpolate-size: allow-keywords;
+    height: 0;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pipeline-node.active .pipeline-node-body {
-    max-height: 1200px;
-    transition: max-height 0.6s cubic-bezier(0.25, 0, 0.2, 1);
+    height: auto;
+    transition: height 0.6s cubic-bezier(0.25, 0, 0.2, 1);
 }
 
 .pipeline-node-content {
@@ -543,84 +528,6 @@
     color: var(--text);
 }
 
-/* Code blocks inside nodes */
-.pipeline-code {
-    background: var(--code-bg);
-    border-radius: 6px;
-    padding: 14px 16px;
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    line-height: 1.7;
-    color: var(--text);
-    overflow-x: auto;
-    white-space: pre;
-}
-
-.pipeline-code .kw { color: var(--accent); }
-.pipeline-code .cm { color: var(--text-secondary); }
-.pipeline-code .op { color: var(--text-secondary); }
-.pipeline-code .num { color: var(--text); font-weight: 600; }
-.pipeline-code .str { color: var(--text); font-style: italic; }
-
-/* Tags inside nodes */
-.pipeline-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 10px;
-}
-
-.pipeline-tag {
-    font-family: var(--font-sans);
-    font-size: 10.5px;
-    font-weight: 500;
-    padding: 2px 10px;
-    border-radius: 12px;
-    background: var(--tag-bg);
-    color: var(--tag-text);
-}
-
-.pipeline-tag--warn {
-    background: var(--expand-bg);
-    color: var(--text-secondary);
-}
-
-/* Field list */
-.pipeline-field-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px 16px;
-    margin-top: 6px;
-}
-
-.pipeline-field-item {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-secondary);
-    padding: 2px 0;
-}
-
-.pipeline-field-item::before {
-    content: '-';
-    color: var(--accent);
-    margin-right: 6px;
-    opacity: 0.4;
-}
-
-.pipeline-node--gap .pipeline-field-item::before {
-    color: var(--text-faint);
-}
-
-/* File path */
-.pipeline-filepath {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--accent);
-    background: var(--tag-bg);
-    padding: 1px 5px;
-    border-radius: 3px;
-}
-
 /* Status badge */
 .pipeline-status {
     display: inline-flex;
@@ -636,16 +543,6 @@
     margin-top: 12px;
     background: var(--tag-bg);
     color: var(--accent);
-}
-
-.pipeline-status--gap {
-    background: var(--expand-bg);
-    color: var(--text-secondary);
-}
-
-.pipeline-status--manual {
-    background: var(--expand-bg);
-    color: var(--text-secondary);
 }
 
 .pipeline-status-dot {
@@ -678,81 +575,6 @@
     border-left: 1px dashed var(--border);
     margin-left: 2px;
     opacity: 0.7;
-}
-
-/* Gap divider */
-.pipeline-gap-divider {
-    position: relative;
-    padding-left: 56px;
-    margin: 20px 0;
-}
-
-.pipeline-gap-divider-line {
-    height: 1px;
-    background: repeating-linear-gradient(
-        90deg,
-        var(--text-faint) 0px,
-        var(--text-faint) 6px,
-        transparent 6px,
-        transparent 14px
-    );
-    opacity: 0.5;
-}
-
-.pipeline-gap-divider-label {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--bg);
-    padding: 2px 14px;
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-}
-
-/* Legend */
-.pipeline-legend {
-    display: flex;
-    justify-content: center;
-    gap: 28px;
-    margin-top: 48px;
-    padding-top: 28px;
-    border-top: 1px solid var(--border);
-}
-
-.pipeline-legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: var(--text-secondary);
-}
-
-.pipeline-legend-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    border: 2px solid;
-}
-
-.pipeline-legend-dot--live {
-    border-color: var(--accent);
-    background: var(--accent);
-}
-
-.pipeline-legend-dot--gap {
-    border-color: var(--text-faint);
-    background: transparent;
-    border-style: dashed;
-}
-
-.pipeline-legend-dot--manual {
-    border-color: var(--text-secondary);
-    background: transparent;
 }
 
 /* ================================================================
@@ -968,14 +790,6 @@
     border-radius: 10px;
 }
 
-.page-footer {
-    margin-top: 60px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    font-size: 14px;
-    color: var(--text-secondary);
-}
-
 /* ================================================================
    PROFILE - Pipeline Node Overrides
    Restructure from horizontal step|title to vertical stack
@@ -1010,17 +824,17 @@
 
 .profile-section .pipeline-node-chevron {
     position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(-45deg);
+    right: 4px;
+    top: 20px;
+    transform: rotate(-45deg);
 }
 
 .profile-section .pipeline-node.active .pipeline-node-chevron {
-    transform: translateY(-50%) rotate(45deg);
+    transform: rotate(45deg);
 }
 
 .profile-section .pipeline-node--gap.active .pipeline-node-chevron {
-    transform: translateY(-50%) rotate(45deg);
+    transform: rotate(45deg);
 }
 
 /* ================================================================
@@ -1176,6 +990,10 @@
         padding-left: 40px;
     }
 
+    .pipeline-node::before {
+        left: 15px;
+    }
+
     .pipeline-node-dot {
         left: 8px;
     }
@@ -1215,6 +1033,10 @@
 
     .pipeline-node {
         padding-left: 32px;
+    }
+
+    .pipeline-node::before {
+        left: 9px;
     }
 
     .pipeline-node-dot {

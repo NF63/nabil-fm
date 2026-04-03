@@ -14,7 +14,7 @@ const { title, href, subtitle, date, readingTime, tags, placeholder = false } = 
 <div class:list={['article-item', { 'article-item--placeholder': placeholder }]}>
     <h2 class="article-item-title">
         {placeholder ? (
-            <a>{title}</a>
+            <span>{title}</span>
         ) : (
             <a href={href}>{title}</a>
         )}

@@ -68,8 +68,19 @@ import PersonalSection from '../components/PersonalSection.astro';
                     if (n !== node) n.classList.remove('active');
                 });
                 node.classList.toggle('active', !wasActive);
+                header.setAttribute('aria-expanded', String(!wasActive));
             });
         }
+    });
+
+    // Keyboard support for pipeline node headers
+    document.querySelectorAll('.pipeline-node-header').forEach(function(header) {
+        header.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                header.click();
+            }
+        });
     });
 
     // ============================================================

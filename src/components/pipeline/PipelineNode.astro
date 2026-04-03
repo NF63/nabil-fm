@@ -25,7 +25,7 @@ const {
 <div class={`pipeline-node ${isGap ? 'pipeline-node--gap' : ''} ${defaultOpen ? 'active' : ''}`} data-id={id}>
     <div class="pipeline-node-dot"></div>
     <div class="pipeline-node-card">
-        <div class="pipeline-node-header">
+        <div class="pipeline-node-header" tabindex="0" role="button">
             <div class="pipeline-node-step">{step}</div>
             <div class="pipeline-node-title-block">
                 <div class="pipeline-node-title">{title}</div>
