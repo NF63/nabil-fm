@@ -1,8 +1,23 @@
 ---
-import Base from '../layouts/Base.astro';
+import Profile from '../layouts/Profile.astro';
 ---
-<Base title="Nabil Fahim">
-    <div style="max-width: 1100px; margin: 0 auto; padding: 48px 24px;">
-        <p>Site under construction.</p>
+<Profile title="Nabil Fahim">
+
+    <div slot="nav">
+        <!-- SectionNav component goes here in Task 5 -->
     </div>
-</Base>
+
+    <!-- Hero -->
+    <div class="profile-hero" id="intro">
+        <h1>Nabil Fahim</h1>
+        <div class="profile-descriptor">Supply growth marketing at Booking.com. Building tools that find demand before it arrives.</div>
+        <a href="/the-margin/" class="profile-link">Read The Margin &rarr;</a>
+    </div>
+
+    <!-- Career and Personal sections added in Tasks 6-8 -->
+
+    <div slot="margin">
+        <!-- Margin notes added in Task 10 -->
+    </div>
+
+</Profile>

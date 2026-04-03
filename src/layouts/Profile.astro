@@ -1,0 +1,21 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+    title: string;
+}
+const { title } = Astro.props;
+---
+<Base title={title}>
+    <div class="profile">
+        <div class="profile-grid">
+            <slot name="nav" />
+            <div class="profile-main">
+                <slot />
+            </div>
+            <div class="profile-margin">
+                <slot name="margin" />
+            </div>
+        </div>
+    </div>
+</Base>

@@ -75,3 +75,78 @@
 .nav-link:hover {
     color: var(--accent);
 }
+
+/* ================================================================
+   PROFILE - Three Column Grid
+   ================================================================ */
+.profile {
+    max-width: var(--article-max);
+    margin: 0 auto;
+    padding: 48px 24px 120px;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: var(--toggle-width) 1fr var(--margin-width);
+    gap: 0;
+    min-height: 80vh;
+}
+
+/* ================================================================
+   PROFILE - Hero
+   ================================================================ */
+.profile-hero {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+}
+
+.profile-hero h1 {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.profile-descriptor {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 20px;
+}
+
+.profile-link {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.profile-link:hover {
+    color: var(--accent-hover);
+}
+
+/* ================================================================
+   PROFILE - Main Content Column
+   ================================================================ */
+.profile-main {
+    padding: 0 40px;
+    min-width: 0;
+}
+
+/* ================================================================
+   PROFILE - Right Margin
+   ================================================================ */
+.profile-margin {
+    padding-top: 24px;
+    padding-left: 24px;
+    border-left: 1px solid var(--border);
+}
