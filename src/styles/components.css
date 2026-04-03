@@ -1104,3 +1104,147 @@
     .article-item-title { font-size: 20px; }
     .page { padding: 0 16px 80px; }
 }
+
+/* ================================================================
+   RESPONSIVE - 900px breakpoint
+   Grid collapse, section nav horizontal, margin notes stacked
+   ================================================================ */
+@media (max-width: 900px) {
+    /* Collapse three-column grid to single column */
+    .profile-grid {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .profile {
+        padding: 32px 20px 80px;
+    }
+
+    /* Section nav: horizontal row above content */
+    .section-nav {
+        position: relative;
+        top: auto;
+        width: auto;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 0 24px;
+        margin-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .section-track {
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+    }
+
+    .section-track::before {
+        /* Horizontal track line instead of vertical */
+        top: 50%;
+        bottom: auto;
+        left: 7px;
+        right: 7px;
+        width: auto;
+        height: 1.5px;
+        transform: translateY(-50%);
+    }
+
+    .section-stop {
+        flex-direction: column;
+        padding: 0 16px;
+    }
+
+    .section-label {
+        margin-right: 0;
+        margin-top: 6px;
+        font-size: 8px;
+    }
+
+    /* Main content: full width, no side padding */
+    .profile-main {
+        padding: 0;
+    }
+
+    /* Margin notes: stack below content */
+    .profile-margin {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        padding-left: 0;
+        padding-top: 32px;
+        margin-top: 48px;
+    }
+
+    /* Hero adjustments */
+    .profile-hero h1 {
+        font-size: 28px;
+    }
+
+    .profile-descriptor {
+        font-size: 17px;
+    }
+
+    /* Section cards: tighter padding */
+    .section-card-header {
+        padding: 20px;
+    }
+
+    .section-card-content {
+        padding: 0 20px 20px;
+    }
+
+    /* Pipeline nodes: less left padding */
+    .pipeline-node {
+        padding-left: 40px;
+    }
+
+    .pipeline-node-dot {
+        left: 8px;
+    }
+}
+
+/* ================================================================
+   RESPONSIVE - 600px breakpoint (mobile)
+   ================================================================ */
+@media (max-width: 600px) {
+    .profile {
+        padding: 24px 16px 60px;
+    }
+
+    .profile-hero h1 {
+        font-size: 24px;
+    }
+
+    .profile-descriptor {
+        font-size: 16px;
+    }
+
+    .section-stop {
+        padding: 0 12px;
+    }
+
+    .section-card-header {
+        padding: 16px;
+    }
+
+    .section-card-content {
+        padding: 0 16px 16px;
+    }
+
+    .section-card-title {
+        font-size: 19px;
+    }
+
+    .pipeline-node {
+        padding-left: 32px;
+    }
+
+    .pipeline-node-dot {
+        left: 4px;
+        width: 12px;
+        height: 12px;
+    }
+
+    .site-footer {
+        padding: 32px 16px;
+    }
+}
