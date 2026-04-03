@@ -24,16 +24,13 @@ const { title, description = 'Nabil Fahim' } = Astro.props;
                 if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
                 return;
             }
+            // No localStorage: apply route default unconditionally
+            // Profile defaults dark, The Margin defaults light
             var isMargin = window.location.pathname.startsWith('/the-margin');
-            if (isMargin) {
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                }
-            } else {
-                if (!window.matchMedia('(prefers-color-scheme: light)').matches) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                }
+            if (!isMargin) {
+                document.documentElement.setAttribute('data-theme', 'dark');
             }
+            // Light is the default HTML state (no attribute), so margin needs no action
         })();
     </script>
 </head>
