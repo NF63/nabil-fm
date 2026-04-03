@@ -1,0 +1,56 @@
+/* ================================================================
+   NAV
+   ================================================================ */
+.nav {
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+    max-width: var(--article-max);
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-name {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.2px;
+    transition: color 0.2s ease;
+}
+
+.nav-name:hover {
+    color: var(--accent);
+}
+
+/* ================================================================
+   THEME TOGGLE
+   ================================================================ */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle:hover {
+    color: var(--text);
+}
+
+/* Light mode: show moon (click to go dark), hide sun */
+.theme-icon--sun { display: none; }
+.theme-icon--moon { display: block; }
+
+/* Dark mode: show sun (click to go light), hide moon */
+[data-theme="dark"] .theme-icon--sun { display: block; }
+[data-theme="dark"] .theme-icon--moon { display: none; }
