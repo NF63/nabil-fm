@@ -1,0 +1,12 @@
+---
+interface Props {
+    label?: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="pipeline-gap-divider">
+    <div class="pipeline-gap-divider-line"></div>
+    {label && <div class="pipeline-gap-divider-label">{label}</div>}
+</div>

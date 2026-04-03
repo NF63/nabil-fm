@@ -30,4 +30,37 @@ import CareerSection from '../components/CareerSection.astro';
         <!-- Margin notes added in Task 10 -->
     </div>
 
+<script is:inline>
+    // Section card accordion - one section at a time
+    document.querySelectorAll('.section-card-header').forEach(function(header) {
+        header.addEventListener('click', function() {
+            var card = header.closest('.section-card');
+            var wasExpanded = card.classList.contains('expanded');
+
+            // Collapse all cards (accordion)
+            document.querySelectorAll('.section-card.expanded').forEach(function(c) {
+                c.classList.remove('expanded');
+            });
+
+            // Toggle clicked card
+            if (!wasExpanded) {
+                card.classList.add('expanded');
+            }
+        });
+    });
+
+    // Pipeline node expand/collapse (reused from The Margin)
+    document.querySelectorAll('.pipeline-node').forEach(function(node) {
+        var header = node.querySelector('.pipeline-node-header');
+        if (header) {
+            header.addEventListener('click', function() {
+                var wasActive = node.classList.contains('active');
+                document.querySelectorAll('.pipeline-node.active').forEach(function(n) {
+                    if (n !== node) n.classList.remove('active');
+                });
+                node.classList.toggle('active', !wasActive);
+            });
+        }
+    });
+</script>
 </Profile>

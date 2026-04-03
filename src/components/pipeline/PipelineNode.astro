@@ -1,0 +1,48 @@
+---
+interface Props {
+    step: string;
+    title: string;
+    subtitle?: string;
+    status?: 'live' | 'gap' | 'manual';
+    statusLabel?: string;
+    isGap?: boolean;
+    id?: string;
+    defaultOpen?: boolean;
+}
+
+const {
+    step,
+    title,
+    subtitle,
+    status,
+    statusLabel,
+    isGap = false,
+    id,
+    defaultOpen = false
+} = Astro.props;
+---
+
+<div class={`pipeline-node ${isGap ? 'pipeline-node--gap' : ''} ${defaultOpen ? 'active' : ''}`} data-id={id}>
+    <div class="pipeline-node-dot"></div>
+    <div class="pipeline-node-card">
+        <div class="pipeline-node-header">
+            <div class="pipeline-node-step">{step}</div>
+            <div class="pipeline-node-title-block">
+                <div class="pipeline-node-title">{title}</div>
+                {subtitle && <div class="pipeline-node-subtitle">{subtitle}</div>}
+            </div>
+            <div class="pipeline-node-chevron"></div>
+        </div>
+        <div class="pipeline-node-body">
+            <div class="pipeline-node-content">
+                <slot />
+                {status && (
+                    <div class={`pipeline-status pipeline-status--${status}`}>
+                        <span class="pipeline-status-dot"></span>
+                        {statusLabel || status}
+                    </div>
+                )}
+            </div>
+        </div>
+    </div>
+</div>

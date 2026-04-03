@@ -334,3 +334,403 @@
     padding: 0 24px 24px;
     border-top: 1px solid var(--border);
 }
+
+/* ================================================================
+   PIPELINE - Vertical flow with spine, expandable nodes
+   ================================================================ */
+
+/* Container & spine */
+.pipeline {
+    position: relative;
+    max-width: 680px;
+}
+
+.pipeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 1.5px;
+    background: var(--track-line);
+}
+
+/* Node */
+.pipeline-node {
+    position: relative;
+    margin-bottom: 6px;
+    padding-left: 56px;
+}
+
+.pipeline-node-dot {
+    position: absolute;
+    left: 13px;
+    top: 22px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--track-line);
+    z-index: 3;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pipeline-node.active .pipeline-node-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.15);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.pipeline-node--gap .pipeline-node-dot {
+    border-color: var(--text-faint);
+    border-style: dashed;
+}
+
+.pipeline-node--gap.active .pipeline-node-dot {
+    background: var(--text-secondary);
+    border-color: var(--text-secondary);
+    box-shadow: none;
+}
+
+/* Card */
+.pipeline-node-card {
+    background: var(--expand-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.pipeline-node-card:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.pipeline-node.active .pipeline-node-card {
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px var(--accent-glow);
+}
+
+.pipeline-node--gap .pipeline-node-card {
+    border-style: dashed;
+    border-color: var(--text-faint);
+    background: var(--bg);
+}
+
+.pipeline-node--gap.active .pipeline-node-card {
+    border-color: var(--text-secondary);
+    box-shadow: none;
+}
+
+/* Header */
+.pipeline-node-header {
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pipeline-node-step {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.pipeline-node-title-block {
+    flex: 1;
+    min-width: 0;
+}
+
+.pipeline-node-title {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+}
+
+.pipeline-node-subtitle {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-top: 1px;
+}
+
+/* Chevron - thin CSS lines, not filled triangle */
+.pipeline-node-chevron {
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid var(--text-faint);
+    border-bottom: 1.5px solid var(--text-faint);
+    transform: rotate(-45deg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+}
+
+.pipeline-node.active .pipeline-node-chevron {
+    transform: rotate(45deg);
+    border-color: var(--accent);
+}
+
+.pipeline-node--gap.active .pipeline-node-chevron {
+    border-color: var(--text-secondary);
+}
+
+/* Expandable body */
+.pipeline-node-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pipeline-node.active .pipeline-node-body {
+    max-height: 1200px;
+}
+
+.pipeline-node-content {
+    padding: 0 18px 18px;
+    border-top: 1px solid var(--border);
+}
+
+.pipeline-node--gap .pipeline-node-content {
+    border-top-color: var(--track-line);
+}
+
+/* Detail sections inside nodes */
+.pipeline-detail {
+    margin-top: 16px;
+}
+
+.pipeline-detail-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.pipeline-detail-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text);
+}
+
+/* Code blocks inside nodes */
+.pipeline-code {
+    background: var(--code-bg);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--text);
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.pipeline-code .kw { color: var(--accent); }
+.pipeline-code .cm { color: var(--text-secondary); }
+.pipeline-code .op { color: var(--text-secondary); }
+.pipeline-code .num { color: var(--text); font-weight: 600; }
+.pipeline-code .str { color: var(--text); font-style: italic; }
+
+/* Tags inside nodes */
+.pipeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.pipeline-tag {
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+}
+
+.pipeline-tag--warn {
+    background: var(--expand-bg);
+    color: var(--text-secondary);
+}
+
+/* Field list */
+.pipeline-field-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 16px;
+    margin-top: 6px;
+}
+
+.pipeline-field-item {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    padding: 2px 0;
+}
+
+.pipeline-field-item::before {
+    content: '-';
+    color: var(--accent);
+    margin-right: 6px;
+    opacity: 0.4;
+}
+
+.pipeline-node--gap .pipeline-field-item::before {
+    color: var(--text-faint);
+}
+
+/* File path */
+.pipeline-filepath {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--tag-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+}
+
+/* Status badge */
+.pipeline-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 12px;
+    background: var(--tag-bg);
+    color: var(--accent);
+}
+
+.pipeline-status--gap {
+    background: var(--expand-bg);
+    color: var(--text-secondary);
+}
+
+.pipeline-status--manual {
+    background: var(--expand-bg);
+    color: var(--text-secondary);
+}
+
+.pipeline-status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.pipeline-status--live .pipeline-status-dot {
+    animation: pipeline-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pipeline-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Connector */
+.pipeline-connector {
+    padding-left: 56px;
+    margin: -1px 0;
+}
+
+.pipeline-connector-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-secondary);
+    padding: 5px 0 5px 14px;
+    border-left: 1px dashed var(--border);
+    margin-left: 2px;
+    opacity: 0.7;
+}
+
+/* Gap divider */
+.pipeline-gap-divider {
+    position: relative;
+    padding-left: 56px;
+    margin: 20px 0;
+}
+
+.pipeline-gap-divider-line {
+    height: 1px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--text-faint) 0px,
+        var(--text-faint) 6px,
+        transparent 6px,
+        transparent 14px
+    );
+    opacity: 0.5;
+}
+
+.pipeline-gap-divider-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg);
+    padding: 2px 14px;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+/* Legend */
+.pipeline-legend {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+}
+
+.pipeline-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.pipeline-legend-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 2px solid;
+}
+
+.pipeline-legend-dot--live {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+
+.pipeline-legend-dot--gap {
+    border-color: var(--text-faint);
+    background: transparent;
+    border-style: dashed;
+}
+
+.pipeline-legend-dot--manual {
+    border-color: var(--text-secondary);
+    background: transparent;
+}

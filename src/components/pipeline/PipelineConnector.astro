@@ -1,0 +1,11 @@
+---
+interface Props {
+    label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="pipeline-connector">
+    <div class="pipeline-connector-label">{label}</div>
+</div>

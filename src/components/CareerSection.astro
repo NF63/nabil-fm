@@ -1,4 +1,6 @@
 ---
+import PipelineNode from './pipeline/PipelineNode.astro';
+import PipelineConnector from './pipeline/PipelineConnector.astro';
 ---
 
 <div id="career" class="profile-section">
@@ -14,8 +16,51 @@
         </div>
         <div class="section-card-body">
             <div class="section-card-content">
-                <!-- Pipeline nodes added in Task 7 -->
-                <p style="color: var(--text-secondary); font-style: italic;">Timeline content loading...</p>
+                <div class="pipeline" style="margin-top: 16px;">
+
+                    <PipelineNode step="2023 - present" title="Booking.com" subtitle="Supply Growth Marketing · Amsterdam" status="live" statusLabel="Current" id="booking" defaultOpen={false}>
+                        <div class="pipeline-detail">
+                            <div class="pipeline-detail-label">What I Do</div>
+                            <div class="pipeline-detail-text">
+                                Lead Peaks 2026 - personalised supply growth campaigns for partners during their peak seasons. Building autonomous detection pipelines that find demand before campaigns are planned.
+                            </div>
+                        </div>
+                    </PipelineNode>
+
+                    <PipelineConnector label="Moved to Amsterdam" />
+
+                    <PipelineNode step="2019 - 2023" title="Qatar Airways" subtitle="Revenue Management · Doha" id="qatar">
+                        <div class="pipeline-detail">
+                            <div class="pipeline-detail-label">What I Did</div>
+                            <div class="pipeline-detail-text">
+                                Revenue optimisation across 180+ destinations. Learned that pricing is applied statistics and that good data infrastructure matters more than clever algorithms.
+                            </div>
+                        </div>
+                    </PipelineNode>
+
+                    <PipelineConnector label="Crossed to the airline side" />
+
+                    <PipelineNode step="2017 - 2019" title="flydubai" subtitle="Commercial Analytics · Dubai" id="flydubai">
+                        <div class="pipeline-detail">
+                            <div class="pipeline-detail-label">What I Did</div>
+                            <div class="pipeline-detail-text">
+                                Commercial analytics for a fast-growing LCC. Built reporting infrastructure and demand forecasting models.
+                            </div>
+                        </div>
+                    </PipelineNode>
+
+                    <PipelineConnector label="Started in aviation" />
+
+                    <PipelineNode step="2015 - 2017" title="Emirates Holidays" subtitle="Marketing · Dubai" id="emirates">
+                        <div class="pipeline-detail">
+                            <div class="pipeline-detail-label">What I Did</div>
+                            <div class="pipeline-detail-text">
+                                First role in travel. Campaign management and marketing analytics for the package holidays division.
+                            </div>
+                        </div>
+                    </PipelineNode>
+
+                </div>
             </div>
         </div>
     </div>
