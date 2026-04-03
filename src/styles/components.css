@@ -759,3 +759,45 @@
     text-transform: uppercase;
     color: var(--text-faint);
 }
+
+/* ================================================================
+   MARGIN NOTES - Symbol + note (from The Margin)
+   ================================================================ */
+.marginnote-symbol {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 700;
+    position: relative;
+    top: -1px;
+}
+
+.marginnote {
+    float: right;
+    clear: right;
+    margin-right: calc(-1 * var(--margin-width) + 20px);
+    width: calc(var(--margin-width) - 50px);
+    margin-top: -2px;
+    margin-bottom: 16px;
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    font-style: italic;
+    transition: opacity 0.15s ease;
+}
+
+/* Profile-specific override: margin notes are in their own grid cell,
+   so float/width calculations from The Margin don't apply */
+.profile-margin .marginnote {
+    float: none;
+    margin-right: 0;
+    width: auto;
+}
+
+/* ================================================================
+   PROFILE - Margin Note Groups (contextual visibility)
+   ================================================================ */
+.margin-group {
+    transition: opacity 0.3s ease;
+}

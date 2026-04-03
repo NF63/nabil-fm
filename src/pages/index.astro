@@ -28,7 +28,23 @@ import PersonalSection from '../components/PersonalSection.astro';
     <PersonalSection />
 
     <div slot="margin">
-        <!-- Margin notes added in Task 10 -->
+        <!-- Hero margin notes -->
+        <div class="margin-group" data-for="intro">
+            <span class="marginnote-symbol">+</span>
+            <span class="marginnote">Based in Amsterdam. Previously Dubai, Doha, London.</span>
+        </div>
+
+        <!-- Career margin notes -->
+        <div class="margin-group" data-for="career" style="opacity: 0.3;">
+            <span class="marginnote-symbol">+</span>
+            <span class="marginnote">The .md filenames are deliberate. Everything here is a living document.</span>
+        </div>
+
+        <!-- Personal margin notes -->
+        <div class="margin-group" data-for="personal" style="opacity: 0.3;">
+            <span class="marginnote-symbol">+</span>
+            <span class="marginnote">Still looking for a good bass amp in Amsterdam. Recommendations welcome.</span>
+        </div>
     </div>
 
 <script is:inline>
@@ -63,5 +79,70 @@ import PersonalSection from '../components/PersonalSection.astro';
             });
         }
     });
+
+    // ============================================================
+    // Section nav dot click -> scroll + expand
+    // ============================================================
+    document.querySelectorAll('.section-stop').forEach(function(stop) {
+        stop.addEventListener('click', function() {
+            var sectionId = stop.getAttribute('data-section');
+            var target = document.getElementById(sectionId);
+            if (!target) {
+                if (sectionId === 'intro') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    updateActiveDot('intro');
+                    return;
+                }
+                return;
+            }
+
+            // Expand the section if it has a card
+            var card = target.querySelector('.section-card');
+            if (card && !card.classList.contains('expanded')) {
+                document.querySelectorAll('.section-card.expanded').forEach(function(c) {
+                    c.classList.remove('expanded');
+                });
+                card.classList.add('expanded');
+            }
+
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // ============================================================
+    // IntersectionObserver - track active section
+    // ============================================================
+    function updateActiveDot(activeId) {
+        document.querySelectorAll('.section-stop').forEach(function(stop) {
+            if (stop.getAttribute('data-section') === activeId) {
+                stop.classList.add('active');
+            } else {
+                stop.classList.remove('active');
+            }
+        });
+        // Update margin notes
+        document.querySelectorAll('.margin-group').forEach(function(group) {
+            var forSection = group.getAttribute('data-for');
+            group.style.opacity = (forSection === activeId) ? '1' : '0.3';
+        });
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                updateActiveDot(entry.target.id);
+            }
+        });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+
+    // Observe hero and sections
+    var heroEl = document.querySelector('.profile-hero');
+    if (heroEl) observer.observe(heroEl);
+    document.querySelectorAll('.profile-section').forEach(function(section) {
+        observer.observe(section);
+    });
+
+    // Initial state
+    updateActiveDot('intro');
 </script>
 </Profile>
