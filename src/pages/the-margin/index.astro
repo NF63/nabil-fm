@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+---
+<Base title="The Margin - Nabil Fahim">
+    <div class="page">
+
+        <div class="hero">
+            <div class="hero-label">The Margin</div>
+            <h1 class="hero-title">Writing</h1>
+            <div class="hero-subtitle">Long-form thinking about data, marketing, and building things that work.</div>
+        </div>
+
+        <div class="article-list">
+            <div class="article-list-header">All Writing</div>
+
+            <PostCard
+                title="How We Taught an AI Agent to Find Search Spikes"
+                href="#"
+                subtitle="Applying autonomous research patterns to production anomaly detection."
+                date=""
+                readingTime=""
+                tags={["Detection", "Autoresearch"]}
+                placeholder={true}
+            />
+
+            <PostCard
+                title="Building a Seasonality Cockpit for 1,000 Cities"
+                href="#"
+                subtitle="Turning years of data into an interactive dashboard for understanding travel patterns."
+                date=""
+                readingTime=""
+                tags={["Data Viz"]}
+                placeholder={true}
+            />
+        </div>
+
+        <div class="page-footer">
+            <p><a href="/" style="color: var(--accent);">&larr; nabil.fm</a></p>
+        </div>
+
+    </div>
+</Base>

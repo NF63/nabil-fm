@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  href: string;
+  subtitle?: string;
+  date: string;
+  readingTime: string;
+  tags: string[];
+  placeholder?: boolean;
+}
+const { title, href, subtitle, date, readingTime, tags, placeholder = false } = Astro.props;
+---
+
+<div class:list={['article-item', { 'article-item--placeholder': placeholder }]}>
+    <h2 class="article-item-title">
+        {placeholder ? (
+            <a>{title}</a>
+        ) : (
+            <a href={href}>{title}</a>
+        )}
+    </h2>
+    {subtitle && <div class="article-item-desc">{subtitle}</div>}
+    <div class="article-item-meta">
+        {placeholder ? (
+            <span class="coming-soon">Coming soon</span>
+        ) : (
+            <>
+                <span>{date}</span>
+                <span>{readingTime}</span>
+            </>
+        )}
+        {tags.map((tag) => (
+            <span class="tag">{tag}</span>
+        ))}
+    </div>
+</div>
