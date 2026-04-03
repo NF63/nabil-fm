@@ -16,7 +16,7 @@ const { title, description = 'Nabil Fahim' } = Astro.props;
     <meta name="description" content={description}>
     <script is:inline>
         // Runs before render to prevent flash.
-        // Priority: localStorage > route default > prefers-color-scheme
+        // Priority: localStorage > prefers-color-scheme > route default
         // Profile (/) defaults dark, The Margin (/the-margin/) defaults light
         (function() {
             var saved = localStorage.getItem('theme');
@@ -24,13 +24,22 @@ const { title, description = 'Nabil Fahim' } = Astro.props;
                 if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
                 return;
             }
-            // No localStorage: apply route default unconditionally
-            // Profile defaults dark, The Margin defaults light
+            // No localStorage: check OS preference first
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+            if (prefersDark) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                return;
+            }
+            if (prefersLight) {
+                // OS says light - respect it (no dark attribute needed)
+                return;
+            }
+            // No OS preference set: apply route default
             var isMargin = window.location.pathname.startsWith('/the-margin');
             if (!isMargin) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
-            // Light is the default HTML state (no attribute), so margin needs no action
         })();
     </script>
 </head>
@@ -60,6 +69,9 @@ const { title, description = 'Nabil Fahim' } = Astro.props;
         </div>
     </nav>
     <slot />
+    <footer class="site-footer">
+        <p>Nabil Fahim &middot; Amsterdam</p>
+    </footer>
     <script is:inline>
         document.getElementById('themeToggle').addEventListener('click', function() {
             var root = document.documentElement;

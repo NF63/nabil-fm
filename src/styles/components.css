@@ -1040,6 +1040,33 @@
 }
 
 /* ================================================================
+   FOOTER - Shared across all pages
+   ================================================================ */
+.site-footer {
+    max-width: var(--article-max);
+    margin: 0 auto;
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.site-footer p {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-faint);
+}
+
+.site-footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.site-footer a:hover {
+    color: var(--accent);
+}
+
+/* ================================================================
    RESPONSIVE - Home page below 700px
    ================================================================ */
 @media (max-width: 700px) {
