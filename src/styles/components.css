@@ -54,3 +54,24 @@
 /* Dark mode: show sun (click to go light), hide moon */
 [data-theme="dark"] .theme-icon--sun { display: block; }
 [data-theme="dark"] .theme-icon--moon { display: none; }
+
+/* ================================================================
+   NAV - Right side (link + toggle)
+   ================================================================ */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent);
+}
