@@ -46,7 +46,10 @@ const { title, description = 'Nabil Fahim' } = Astro.props;
 <body>
     <nav class="nav">
         <div class="nav-inner">
-            <a href="/" class="nav-name">Nabil Fahim</a>
+            <a href="/" class="nav-logo" aria-label="Nabil Fahim - Home">
+                <img src="/images/logo-dark.png" alt="Nabil Fahim" class="nav-logo-img nav-logo-dark" width="32" height="32">
+                <img src="/images/logo-light.png" alt="Nabil Fahim" class="nav-logo-img nav-logo-light" width="32" height="32">
+            </a>
             <div class="nav-right">
                 <a href="/the-margin/" class="nav-link">The Margin</a>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
