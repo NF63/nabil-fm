@@ -57,11 +57,23 @@ import PersonalSection from '../components/PersonalSection.astro';
             // Collapse all cards (accordion)
             document.querySelectorAll('.section-card.expanded').forEach(function(c) {
                 c.classList.remove('expanded');
+                c.querySelector('.section-card-header').setAttribute('aria-expanded', 'false');
             });
 
             // Toggle clicked card
             if (!wasExpanded) {
                 card.classList.add('expanded');
+                card.querySelector('.section-card-header').setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    // Keyboard support for section card headers
+    document.querySelectorAll('.section-card-header').forEach(function(header) {
+        header.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                header.click();
             }
         });
     });
@@ -101,8 +113,10 @@ import PersonalSection from '../components/PersonalSection.astro';
             if (card && !card.classList.contains('expanded')) {
                 document.querySelectorAll('.section-card.expanded').forEach(function(c) {
                     c.classList.remove('expanded');
+                    c.querySelector('.section-card-header').setAttribute('aria-expanded', 'false');
                 });
                 card.classList.add('expanded');
+                card.querySelector('.section-card-header').setAttribute('aria-expanded', 'true');
             }
 
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
