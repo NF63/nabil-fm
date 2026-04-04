@@ -325,4 +325,40 @@ nabil-fm/
 - Search functionality
 - Comments on The Margin articles
 - Article content creation (placeholder only for now)
+
+---
+
+## Implementation Reality (updated 2026-04-04)
+
+The following deviations from the original spec were made during the build and polish sessions. These are the current state of the implementation.
+
+### Changed from spec
+
+| Spec said | Reality | Why |
+|---|---|---|
+| Nav: "Nabil Fahim" text (Spectral 18px 600) | Logo image (CSS background-image, dark/light variants) | User preference for logo branding |
+| Three-column CSS grid (nav + content + margin) | Two-column grid (nav + content), margin notes via padding-right + JS positioning | Float-based margin notes break inside flex containers (section cards). Tried 3 approaches before landing on JS. |
+| Margin notes: float-based (same as The Margin) | JS-positioned: triggers anywhere, notes in separate container, JS calculates vertical alignment | Flex containers clip floats. JS approach scales to any nesting depth. |
+| Section headers "Career" / "Personal" above cards | Removed | Cleaner without - the card titles are enough |
+| Personal section: dashed dots (isGap=true) | Solid dots, matching career | User wanted uniformity |
+| IntersectionObserver for section tracking | Scroll-position tracker | IO failed on short pages (collapsed sections never entered trigger zone) |
+| Section nav labels: career / off-duty | career.md / out-of-office.md | Match the card titles |
+| Flash prevention: localStorage > route default | localStorage > prefers-color-scheme > route default | Review caught that ignoring OS preference was wrong |
+| `max-height` transitions for expand/collapse | `interpolate-size: allow-keywords` + `height: auto` | Modern CSS, no max-height jank |
+| Component names: CareerPipeline, PersonalPipeline | CareerSection, PersonalSection | They're sections containing pipelines, not pipelines themselves |
+
+### Added (not in original spec)
+
+- Logo in nav (dark/light PNG variants, 32px, CSS background-image swap)
+- Shared footer in Base.astro ("Nabil Fahim . Amsterdam")
+- Favicons with prefers-color-scheme media queries (16px, 32px, 180px, 192px, 512px)
+- Open Graph + Twitter Card meta tags
+- Web app manifest (site.webmanifest)
+- Theme-color meta tags (light/dark)
+- Canonical URL tag
+- Responsive breakpoints at 900px and 600px
+- Keyboard accessibility (tabindex, role=button, aria-expanded, Enter/Space handlers)
+- Focus-visible outlines on all interactive elements
+- Pipeline node layout override (vertical stack instead of horizontal step|title)
+- `+` prefix on margin note text via CSS ::before
 - Responsive detail pass (handled during build, not spec'd here)
