@@ -12,7 +12,7 @@ const { title } = Astro.props;
             <slot name="nav" />
             <div class="profile-main">
                 <slot />
-                <div class="margin-notes" aria-label="Margin notes">
+                <div class="margin-notes" role="complementary" aria-label="Margin notes">
                     <slot name="notes" />
                 </div>
             </div>

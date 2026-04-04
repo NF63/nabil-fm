@@ -270,16 +270,6 @@
 /* ================================================================
    SECTION CARDS - Expandable containers
    ================================================================ */
-.section-header-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-}
-
 .section-card {
     background: var(--expand-bg);
     border: 1px solid var(--border);
@@ -415,17 +405,6 @@
     box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
-.pipeline-node--gap .pipeline-node-dot {
-    border-color: var(--text-faint);
-    border-style: dashed;
-}
-
-.pipeline-node--gap.active .pipeline-node-dot {
-    background: var(--text-secondary);
-    border-color: var(--text-secondary);
-    box-shadow: none;
-}
-
 /* Card */
 .pipeline-node-card {
     background: var(--expand-bg);
@@ -443,17 +422,6 @@
 .pipeline-node.active .pipeline-node-card {
     border-color: var(--accent);
     box-shadow: 0 2px 12px var(--accent-glow);
-}
-
-.pipeline-node--gap .pipeline-node-card {
-    border-style: dashed;
-    border-color: var(--text-faint);
-    background: var(--bg);
-}
-
-.pipeline-node--gap.active .pipeline-node-card {
-    border-color: var(--text-secondary);
-    box-shadow: none;
 }
 
 /* Header */
@@ -511,10 +479,6 @@
     border-color: var(--accent);
 }
 
-.pipeline-node--gap.active .pipeline-node-chevron {
-    border-color: var(--text-secondary);
-}
-
 /* Expandable body */
 .pipeline-node-body {
     interpolate-size: allow-keywords;
@@ -531,10 +495,6 @@
 .pipeline-node-content {
     padding: 0 18px 18px;
     border-top: 1px solid var(--border);
-}
-
-.pipeline-node--gap .pipeline-node-content {
-    border-top-color: var(--track-line);
 }
 
 /* Detail sections inside nodes */
@@ -639,7 +599,7 @@
     color: var(--accent);
     font-size: 14px;
     font-weight: 700;
-    cursor: default;
+    cursor: help;
     position: relative;
     top: -1px;
 }
@@ -678,16 +638,6 @@
     margin-bottom: 12px;
 }
 
-.hero-title a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.hero-title a:hover {
-    color: var(--accent);
-}
-
 .hero-subtitle {
     font-family: var(--font-serif);
     font-size: 19px;
@@ -696,15 +646,6 @@
     font-weight: 400;
     margin-bottom: 20px;
     line-height: 1.5;
-}
-
-.hero-meta {
-    font-size: 14px;
-    color: var(--text-secondary);
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    flex-wrap: wrap;
 }
 
 .tag {
@@ -783,15 +724,6 @@
     opacity: 0.5;
 }
 
-.article-item--placeholder .article-item-title a {
-    cursor: default;
-    color: var(--text-secondary);
-}
-
-.article-item--placeholder .article-item-title a:hover {
-    color: var(--text-secondary);
-}
-
 .coming-soon {
     font-size: 11px;
     font-weight: 600;
@@ -846,10 +778,6 @@
     transform: rotate(45deg);
 }
 
-.profile-section .pipeline-node--gap.active .pipeline-node-chevron {
-    transform: rotate(45deg);
-}
-
 /* ================================================================
    ACCESSIBILITY - Focus visible states
    ================================================================ */
@@ -880,16 +808,6 @@
     font-family: var(--font-sans);
     font-size: 13px;
     color: var(--text-faint);
-}
-
-.site-footer a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.site-footer a:hover {
-    color: var(--accent);
 }
 
 /* ================================================================
@@ -950,6 +868,10 @@
     .section-stop {
         flex-direction: column;
         padding: 0 16px;
+        min-height: 44px;
+        min-width: 44px;
+        justify-content: center;
+        align-items: center;
     }
 
     .section-label {
@@ -994,8 +916,12 @@
         padding-left: 40px;
     }
 
-    .pipeline-node::before {
+    .pipeline::before {
         left: 15px;
+    }
+
+    .pipeline-connector {
+        padding-left: 40px;
     }
 
     .pipeline-node-dot {
@@ -1021,6 +947,8 @@
 
     .section-stop {
         padding: 0 12px;
+        min-height: 44px;
+        min-width: 44px;
     }
 
     .section-card-header {
@@ -1039,8 +967,12 @@
         padding-left: 32px;
     }
 
-    .pipeline-node::before {
+    .pipeline::before {
         left: 9px;
+    }
+
+    .pipeline-connector {
+        padding-left: 32px;
     }
 
     .pipeline-node-dot {

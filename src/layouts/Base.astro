@@ -35,14 +35,14 @@ const { title, description = 'Nabil Fahim' } = Astro.props;
         // Priority: localStorage > prefers-color-scheme > route default
         // Profile (/) defaults dark, The Margin (/the-margin/) defaults light
         (function() {
-            var saved = localStorage.getItem('theme');
+            const saved = localStorage.getItem('theme');
             if (saved) {
                 if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
                 return;
             }
             // No localStorage: check OS preference first
-            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
             if (prefersDark) {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 return;
@@ -52,7 +52,7 @@ const { title, description = 'Nabil Fahim' } = Astro.props;
                 return;
             }
             // No OS preference set: apply route default
-            var isMargin = window.location.pathname.startsWith('/the-margin');
+            const isMargin = window.location.pathname.startsWith('/the-margin');
             if (!isMargin) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
@@ -84,15 +84,17 @@ const { title, description = 'Nabil Fahim' } = Astro.props;
             </div>
         </div>
     </nav>
-    <slot />
+    <main>
+        <slot />
+    </main>
     <footer class="site-footer">
         <p>Nabil Fahim &middot; Amsterdam</p>
     </footer>
     <script is:inline>
         document.getElementById('themeToggle').addEventListener('click', function() {
-            var root = document.documentElement;
+            const root = document.documentElement;
             root.classList.add('theme-transition');
-            var isDark = root.getAttribute('data-theme') === 'dark';
+            const isDark = root.getAttribute('data-theme') === 'dark';
             if (isDark) {
                 root.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'light');
@@ -113,6 +115,10 @@ const { title, description = 'Nabil Fahim' } = Astro.props;
                 }
             }
         });
+
+        // Set initial aria-label based on current theme
+        const initialIsDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        document.getElementById('themeToggle').setAttribute('aria-label', initialIsDark ? 'Switch to light mode' : 'Switch to dark mode');
     </script>
 </body>
 </html>

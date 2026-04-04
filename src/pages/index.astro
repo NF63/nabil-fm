@@ -38,8 +38,8 @@ import PersonalSection from '../components/PersonalSection.astro';
     // Section card accordion - one section at a time
     document.querySelectorAll('.section-card-header').forEach(function(header) {
         header.addEventListener('click', function() {
-            var card = header.closest('.section-card');
-            var wasExpanded = card.classList.contains('expanded');
+            const card = header.closest('.section-card');
+            const wasExpanded = card.classList.contains('expanded');
 
             // Collapse all cards (accordion)
             document.querySelectorAll('.section-card.expanded').forEach(function(c) {
@@ -67,10 +67,10 @@ import PersonalSection from '../components/PersonalSection.astro';
 
     // Pipeline node expand/collapse (reused from The Margin)
     document.querySelectorAll('.pipeline-node').forEach(function(node) {
-        var header = node.querySelector('.pipeline-node-header');
+        const header = node.querySelector('.pipeline-node-header');
         if (header) {
             header.addEventListener('click', function() {
-                var wasActive = node.classList.contains('active');
+                const wasActive = node.classList.contains('active');
                 document.querySelectorAll('.pipeline-node.active').forEach(function(n) {
                     if (n !== node) n.classList.remove('active');
                 });
@@ -95,8 +95,8 @@ import PersonalSection from '../components/PersonalSection.astro';
     // ============================================================
     document.querySelectorAll('.section-stop').forEach(function(stop) {
         stop.addEventListener('click', function() {
-            var sectionId = stop.getAttribute('data-section');
-            var target = document.getElementById(sectionId);
+            const sectionId = stop.getAttribute('data-section');
+            const target = document.getElementById(sectionId);
             if (!target) {
                 if (sectionId === 'intro') {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -107,7 +107,7 @@ import PersonalSection from '../components/PersonalSection.astro';
             }
 
             // Expand the section if it has a card
-            var card = target.querySelector('.section-card');
+            const card = target.querySelector('.section-card');
             if (card && !card.classList.contains('expanded')) {
                 document.querySelectorAll('.section-card.expanded').forEach(function(c) {
                     c.classList.remove('expanded');
@@ -136,18 +136,18 @@ import PersonalSection from '../components/PersonalSection.astro';
         });
     }
 
-    var sections = [
+    const sections = [
         { id: 'intro', el: document.getElementById('intro') },
         { id: 'career', el: document.getElementById('career') },
         { id: 'personal', el: document.getElementById('personal') }
     ].filter(function(s) { return s.el; });
 
-    var lastActiveId = 'intro';
+    let lastActiveId = 'intro';
 
     function trackScroll() {
-        var scrollTop = window.scrollY;
-        var windowHeight = window.innerHeight;
-        var docHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
 
         // At the very top -> intro
         if (scrollTop < 50) {
@@ -160,7 +160,7 @@ import PersonalSection from '../components/PersonalSection.astro';
 
         // At the bottom of the page -> last section
         if (scrollTop + windowHeight >= docHeight - 50) {
-            var lastId = sections[sections.length - 1].id;
+            const lastId = sections[sections.length - 1].id;
             if (lastActiveId !== lastId) {
                 lastActiveId = lastId;
                 updateActiveDot(lastId);
@@ -169,12 +169,12 @@ import PersonalSection from '../components/PersonalSection.astro';
         }
 
         // Find the section whose top is closest to (but above) the viewport centre
-        var viewportTarget = scrollTop + windowHeight * 0.3;
-        var activeId = 'intro';
+        const viewportTarget = scrollTop + windowHeight * 0.3;
+        let activeId = 'intro';
 
-        for (var i = sections.length - 1; i >= 0; i--) {
-            var rect = sections[i].el.getBoundingClientRect();
-            var sectionTop = rect.top + scrollTop;
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const rect = sections[i].el.getBoundingClientRect();
+            const sectionTop = rect.top + scrollTop;
             if (sectionTop <= viewportTarget) {
                 activeId = sections[i].id;
                 break;
@@ -198,17 +198,17 @@ import PersonalSection from '../components/PersonalSection.astro';
     // Each .margin-note[data-for="X"] aligns with .mn-trigger[data-note="X"]
     // ============================================================
     function positionMarginNotes() {
-        var main = document.querySelector('.profile-main');
+        const main = document.querySelector('.profile-main');
         if (!main) return;
-        var mainRect = main.getBoundingClientRect();
-        var mainTop = mainRect.top + window.scrollY;
+        const mainRect = main.getBoundingClientRect();
+        const mainTop = mainRect.top + window.scrollY;
 
         document.querySelectorAll('.margin-note').forEach(function(note) {
-            var id = note.getAttribute('data-for');
-            var trigger = document.querySelector('.mn-trigger[data-note="' + id + '"]');
+            const id = note.getAttribute('data-for');
+            const trigger = document.querySelector('.mn-trigger[data-note="' + id + '"]');
             if (trigger) {
-                var triggerRect = trigger.getBoundingClientRect();
-                var triggerTop = triggerRect.top + window.scrollY;
+                const triggerRect = trigger.getBoundingClientRect();
+                const triggerTop = triggerRect.top + window.scrollY;
                 note.style.top = (triggerTop - mainTop) + 'px';
             }
         });
@@ -239,6 +239,15 @@ import PersonalSection from '../components/PersonalSection.astro';
     });
 
     // Reposition on resize
-    window.addEventListener('resize', positionMarginNotes);
+    let resizeTicking = false;
+    window.addEventListener('resize', function() {
+        if (!resizeTicking) {
+            requestAnimationFrame(function() {
+                positionMarginNotes();
+                resizeTicking = false;
+            });
+            resizeTicking = true;
+        }
+    });
 </script>
 </Profile>
