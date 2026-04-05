@@ -3,8 +3,9 @@ import Profile from '../layouts/Profile.astro';
 import SectionNav from '../components/SectionNav.astro';
 import CareerSection from '../components/CareerSection.astro';
 import PersonalSection from '../components/PersonalSection.astro';
+import { features } from '../config';
 ---
-<Profile title="Nabil Fahim">
+<Profile title="Nabil Fahim" sidebarLogo>
 
     <SectionNav
         slot="nav"
@@ -14,13 +15,14 @@ import PersonalSection from '../components/PersonalSection.astro';
             { id: 'personal', label: 'out-of-office.md' }
         ]}
         activeId="intro"
+        showLogo
     />
 
     <!-- Hero -->
     <div class="profile-hero" id="intro">
         <h1>Nabil Fahim</h1>
         <div class="profile-descriptor">Supply growth marketing at Booking.com. Building tools that find demand before it arrives.<span class="mn-trigger" data-note="mn-1">+</span></div>
-        <a href="/the-margin/" class="profile-link">Read The Margin &rarr;</a>
+        {features.theMargin && <a href="/the-margin/" class="profile-link">Read The Margin &rarr;</a>}
     </div>
 
     <CareerSection />

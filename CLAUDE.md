@@ -81,23 +81,55 @@ Uses `interpolate-size: allow-keywords` with `height: 0` / `height: auto` (moder
 
 ## Design Integrity Rule
 
-**The Margin's design system is the canonical source.** tokens.css and base.css must be byte-identical to the work version. Pipeline components (PipelineNode, PipelineConnector) are exact copies.
+**nabil-fm is the canonical source for the shared design system.** tokens.css, base.css, and shared components (PipelineNode, PipelineConnector, PostCard) must be developed here first, then synced to the work version via the `margin-nabil-fm-sync` skill.
 
-- **Canonical source:** `~/Desktop/Everything/Work/work-apps-and-projects/the-margin/`
+- **Sync direction:** Always nabil-fm -> the-margin. Never the reverse.
+- **Sync skill:** `~/.claude/skills/margin-nabil-fm-sync/` - handles design system sync, parallel audit agents, and drift detection
+- **Sync reference doc:** `~/Desktop/Everything/Work/99-claude-docs/the-margin-sync.md` - full workflow including article publishing
 - **Design system doc:** `~/Desktop/Everything/Work/work-apps-and-projects/the-margin/design-system.md`
-- **Profile-specific** components (SectionNav, CareerSection, PersonalSection, margin note system) are local to nabil-fm and don't need to mirror.
+- **Profile-specific** components (SectionNav, CareerSection, PersonalSection, margin note system) are local to nabil-fm and don't need to sync.
 - **Verify after changes:** `diff src/styles/tokens.css ~/Desktop/Everything/Work/work-apps-and-projects/the-margin/src/styles/tokens.css`
 
 ---
 
 ## Two Versions of The Margin
 
-- **Work version** (DO NOT TOUCH): `~/Desktop/Everything/Work/work-apps-and-projects/the-margin/`
-  - Company-confidential data (Booking.com metrics, internal tools, proprietary methods)
-  - Lives on GitLab (booking-com/personal/nabil.fahim)
-- **Public version** (this project, under /the-margin/):
-  - Copied from work version with confidential data removed/redacted
-  - Never copy raw - always review for sensitive content before adding
+- **This project (nabil-fm)** is primary. All development happens here.
+  - Public site at nabil.fm, deployed via Vercel
+  - Lives on GitHub (personal account, NF63)
+  - The `/the-margin/` route hosts the public version of The Margin blog
+- **Work version:** `~/Desktop/Everything/Work/work-apps-and-projects/the-margin/`
+  - Receives synced design system and occasional article copies from nabil-fm
+  - May contain company-confidential data (Booking.com metrics, internal tools)
+  - Lives on GitLab (booking-com/personal/nabil.fahim), deployed to GitLab Pages
+  - Never copy from work to nabil-fm without a full sensitivity review and redaction pass
+
+---
+
+## Work Contamination Guard
+
+**CRITICAL: Non-skippable pre-commit check.** This site is public (deployed to Vercel at nabil.fm). Any work content in a commit is publicly visible and permanently in git history.
+
+Before every `git commit` in this project, run these checks. No exceptions.
+
+1. **Deploy contamination audit agent:** Read the Agent 1 prompt from `~/.claude/skills/margin-nabil-fm-sync/audit-specs.md` and deploy it as an Explore agent (read-only). Wait for results.
+
+2. **Git identity:** Verify `git config user.email` returns `84849635+NF63@users.noreply.github.com`. If it shows `nabil.fahim@booking.com`, stop and fix: `git config user.email "84849635+NF63@users.noreply.github.com"`
+
+3. **npm registry:** Verify `.npmrc` in project root contains `registry=https://registry.npmjs.org/`. If missing or pointing to Artifactory, stop and fix.
+
+4. **Gate:** If the audit agent finds ANY match, **block the commit**. Fix the contamination, re-run the agent, then commit.
+
+**Banned patterns** (scanned in `src/`, `public/`, `package.json`, `.npmrc`):
+- `booking.com` (URLs or emails)
+- `gitlab.com/booking-com`
+- `jfrog.booking.com`
+- `/personal/nabil.fahim/the-margin/`
+- `@booking.com`
+- `ssh.booking.com`
+- `GlobalProtect`
+
+**Not scanned** (legitimately reference work paths): `CLAUDE.md`, `docs/superpowers/`, `.git/`, `node_modules/`
 
 ---
 

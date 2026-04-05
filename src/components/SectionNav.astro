@@ -2,11 +2,18 @@
 interface Props {
     sections: { id: string; label: string }[];
     activeId?: string;
+    showLogo?: boolean;
 }
-const { sections, activeId = sections[0]?.id } = Astro.props;
+const { sections, activeId = sections[0]?.id, showLogo = false } = Astro.props;
 ---
 
 <nav class="section-nav" aria-label="Page sections">
+    {showLogo && (
+        <div class="section-nav-logo" aria-hidden="true">
+            <img class="section-nav-logo-img section-nav-logo--light" src="/images/logo-sidebar-light.png" alt="" width="55" height="55" />
+            <img class="section-nav-logo-img section-nav-logo--dark" src="/images/logo-sidebar-dark.png" alt="" width="55" height="55" />
+        </div>
+    )}
     <div class="section-track">
         {sections.map((section) => (
             <button

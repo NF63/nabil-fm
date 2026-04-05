@@ -2,7 +2,6 @@
    NAV
    ================================================================ */
 .nav {
-    border-bottom: 1px solid var(--border);
 }
 
 .nav-inner {
@@ -44,10 +43,23 @@
     cursor: pointer;
     color: var(--text-secondary);
     padding: 4px;
+    padding-left: 20px;
     border-radius: 4px;
     transition: color 0.2s ease;
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+/* Subtle divider between nav-link and theme toggle (only when link is present) */
+.nav-link + .theme-toggle::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 1px;
+    background: var(--border);
 }
 
 .theme-toggle:hover {
@@ -69,6 +81,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    margin-left: auto;
 }
 
 .nav-link {
@@ -81,6 +94,19 @@
 
 .nav-link:hover {
     color: var(--accent);
+}
+
+.nav-link-arrow {
+    display: inline-block;
+    font-size: 0.75em;
+    opacity: 0.45;
+    margin-left: 1px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-link:hover .nav-link-arrow {
+    opacity: 0.8;
+    transform: translate(1px, -1px);
 }
 
 /* ================================================================
@@ -189,13 +215,36 @@
     position: sticky;
     top: 80px;
     height: fit-content;
-    padding-top: 24px;
+    padding-top: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     width: calc(var(--toggle-width) - 34px);
     user-select: none;
 }
+
+/* ================================================================
+   SECTION NAV - Sidebar Logo
+   ================================================================ */
+.section-nav-logo {
+    margin-bottom: 20px;
+    align-self: flex-end;
+}
+
+.section-nav-logo-img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Light mode: show dark variant (dark logo on light bg), hide light */
+.section-nav-logo--light { display: none; }
+.section-nav-logo--dark { display: block; }
+
+/* Dark mode: show light variant (light logo on dark bg), hide dark */
+[data-theme="dark"] .section-nav-logo--light { display: block; }
+[data-theme="dark"] .section-nav-logo--dark { display: none; }
 
 .section-track {
     position: relative;
@@ -846,6 +895,10 @@
         padding: 0 0 24px;
         margin-bottom: 24px;
         border-bottom: 1px solid var(--border);
+    }
+
+    .section-nav-logo {
+        display: none;
     }
 
     .section-track {
