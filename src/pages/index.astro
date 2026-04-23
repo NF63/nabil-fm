@@ -11,8 +11,8 @@ import { features } from '../config';
         slot="nav"
         sections={[
             { id: 'intro', label: 'nabil.fm' },
-            { id: 'career', label: 'career.md' },
-            { id: 'personal', label: 'out-of-office.md' }
+            { id: 'career', label: 'Career' },
+            { id: 'personal', label: 'Out of Office' }
         ]}
         activeId="intro"
         showLogo
@@ -21,7 +21,7 @@ import { features } from '../config';
     <!-- Hero -->
     <div class="profile-hero" id="intro">
         <h1>Nabil Fahim</h1>
-        <div class="profile-descriptor">Supply growth marketing at Booking.com. Building tools that find demand before it arrives.<span class="mn-trigger" data-note="mn-1">+</span></div>
+        <div class="profile-descriptor">I've spent over a decade figuring out how travel commerce works - across 28 million accommodation listings, three airlines, and three countries. Now I'm building the AI systems that spot what humans miss.<span class="mn-trigger" data-note="mn-1">+</span></div>
         {features.theMargin && <a href="/the-margin/" class="profile-link">Read The Margin &rarr;</a>}
     </div>
 
@@ -31,9 +31,19 @@ import { features } from '../config';
 
     <!-- Margin notes: positioned by JS to align with their + triggers -->
     <div slot="notes">
-        <div class="margin-note" data-for="mn-1">Based in Amsterdam. Previously Dubai, Doha, London.</div>
-        <div class="margin-note" data-for="mn-2">The .md filenames are deliberate. Everything here is a living document.</div>
-        <div class="margin-note" data-for="mn-3">Still looking for a good bass amp in Amsterdam. Recommendations welcome.</div>
+        <div class="margin-note" data-for="mn-1">Based in Amsterdam. Previously Dubai, Doha.</div>
+        <div class="margin-note margin-note--illustration" data-for="mn-ams">
+            <svg class="margin-illustration" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Amsterdam canal houses">
+              <path d="M12 118 L12 45 L17 38 L22 32 L27 38 L32 45 L32 118" /><line x1="12" y1="118" x2="32" y2="118" /><rect x="18" y="98" width="8" height="20" rx="4" /><rect x="16" y="55" width="5" height="7" rx="0.5" /><rect x="24" y="55" width="5" height="7" rx="0.5" /><rect x="16" y="70" width="5" height="7" rx="0.5" /><rect x="24" y="70" width="5" height="7" rx="0.5" /><rect x="16" y="85" width="5" height="7" rx="0.5" /><rect x="24" y="85" width="5" height="7" rx="0.5" /><line x1="22" y1="35" x2="22" y2="30" /><line x1="20" y1="30" x2="24" y2="30" />
+              <path d="M36 118 L36 50 L38 50 L38 44 L41 44 L41 38 L45 35 L49 38 L49 44 L52 44 L52 50 L54 50 L54 118" /><line x1="36" y1="118" x2="54" y2="118" /><rect x="42" y="100" width="7" height="18" rx="3.5" /><rect x="39" y="58" width="5" height="7" rx="0.5" /><rect x="47" y="58" width="5" height="7" rx="0.5" /><rect x="39" y="73" width="5" height="7" rx="0.5" /><rect x="47" y="73" width="5" height="7" rx="0.5" /><rect x="39" y="87" width="5" height="7" rx="0.5" /><rect x="47" y="87" width="5" height="7" rx="0.5" />
+              <path d="M58 118 L58 52 L60 48 L63 42 L66 48 L68 52 L68 118" /><line x1="58" y1="118" x2="68" y2="118" /><rect x="60" y="102" width="6" height="16" rx="3" /><rect x="60" y="60" width="6" height="6" rx="0.5" /><rect x="60" y="74" width="6" height="6" rx="0.5" /><rect x="60" y="88" width="6" height="6" rx="0.5" />
+              <path d="M72 118 L72 42 L74 42 L78 32 L82 42 L84 42 L84 118" /><line x1="72" y1="118" x2="84" y2="118" /><rect x="75" y="100" width="7" height="18" rx="3.5" /><rect x="74" y="52" width="5" height="7" rx="0.5" /><rect x="74" y="67" width="5" height="7" rx="0.5" /><rect x="74" y="82" width="5" height="7" rx="0.5" /><line x1="78" y1="35" x2="78" y2="29" /><line x1="76" y1="29" x2="80" y2="29" />
+              <path d="M88 118 L88 40 L91 36 L95 33 L99 36 L102 40 L102 118" /><line x1="88" y1="118" x2="102" y2="118" /><circle cx="95" cy="38" r="2" /><rect x="92" y="100" width="7" height="18" rx="3.5" /><rect x="91" y="50" width="5" height="7" rx="0.5" /><rect x="91" y="65" width="5" height="7" rx="0.5" /><rect x="91" y="82" width="5" height="7" rx="0.5" />
+              <path d="M106 118 L107 55 L110 50 L113 55 L114 118" /><line x1="106" y1="118" x2="114" y2="118" /><rect x="108" y="102" width="5" height="16" rx="2.5" /><rect x="108" y="62" width="4" height="6" rx="0.5" /><rect x="108" y="76" width="4" height="6" rx="0.5" /><rect x="108" y="90" width="4" height="6" rx="0.5" />
+              <path d="M118 118 L118 38 L120 38 L120 33 L123 33 L123 28 L127 25 L131 28 L131 33 L134 33 L134 38 L136 38 L136 118" /><line x1="118" y1="118" x2="136" y2="118" /><rect x="124" y="98" width="7" height="20" rx="3.5" /><rect x="121" y="48" width="5" height="7" rx="0.5" /><rect x="129" y="48" width="5" height="7" rx="0.5" /><rect x="121" y="63" width="5" height="7" rx="0.5" /><rect x="129" y="63" width="5" height="7" rx="0.5" /><rect x="121" y="80" width="5" height="7" rx="0.5" /><rect x="129" y="80" width="5" height="7" rx="0.5" /><line x1="127" y1="28" x2="127" y2="22" /><line x1="125" y1="22" x2="129" y2="22" />
+              <path d="M8 120 Q15 122 22 120 Q30 118 38 120 Q46 122 54 120 Q62 118 70 120 Q78 122 86 120 Q94 118 102 120 Q110 122 118 120 Q126 118 134 120 Q138 122 140 120" opacity="0.4" />
+            </svg>
+        </div>
     </div>
 
 <script is:inline>
@@ -54,6 +64,14 @@ import { features } from '../config';
                 card.classList.add('expanded');
                 card.querySelector('.section-card-header').setAttribute('aria-expanded', 'true');
             }
+
+            // Update all hint texts
+            document.querySelectorAll('.section-card').forEach(function(c) {
+                var hint = c.querySelector('.section-card-hint-text');
+                if (hint) {
+                    hint.textContent = c.classList.contains('expanded') ? hint.dataset.collapse : hint.dataset.expand;
+                }
+            });
         });
     });
 
@@ -73,9 +91,6 @@ import { features } from '../config';
         if (header) {
             header.addEventListener('click', function() {
                 const wasActive = node.classList.contains('active');
-                document.querySelectorAll('.pipeline-node.active').forEach(function(n) {
-                    if (n !== node) n.classList.remove('active');
-                });
                 node.classList.toggle('active', !wasActive);
                 header.setAttribute('aria-expanded', String(!wasActive));
             });
@@ -208,10 +223,16 @@ import { features } from '../config';
         document.querySelectorAll('.margin-note').forEach(function(note) {
             const id = note.getAttribute('data-for');
             const trigger = document.querySelector('.mn-trigger[data-note="' + id + '"]');
-            if (trigger) {
+            var isVisible = trigger && !trigger.closest('.section-card:not(.expanded) .section-card-body') && !trigger.closest('.pipeline-node:not(.active) .pipeline-detail') && !trigger.closest('.section-card:not(.expanded) .pipeline-node-header');
+            if (isVisible) {
                 const triggerRect = trigger.getBoundingClientRect();
                 const triggerTop = triggerRect.top + window.scrollY;
                 note.style.top = (triggerTop - mainTop) + 'px';
+                note.style.opacity = '1';
+                note.style.pointerEvents = 'auto';
+            } else {
+                note.style.opacity = '0';
+                note.style.pointerEvents = 'none';
             }
         });
     }

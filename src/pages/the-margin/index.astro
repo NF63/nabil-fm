@@ -1,8 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PostCard from '../../components/PostCard.astro';
+import { features } from '../../config';
 ---
 <Base title="The Margin - Nabil Fahim">
+    {!features.theMargin && (
+        <script is:inline>
+            if (!new URLSearchParams(window.location.search).has('preview')) {
+                window.location.replace('/');
+            }
+        </script>
+    )}
     <div class="page">
 
         <div class="hero">

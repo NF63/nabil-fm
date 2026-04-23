@@ -4,57 +4,57 @@ import PipelineConnector from './pipeline/PipelineConnector.astro';
 ---
 
 <div id="career" class="profile-section">
-    <div class="section-card" data-section-card="career">
-        <div class="section-card-header" tabindex="0" role="button" aria-expanded="false">
-            <div class="section-card-title">career.md<span class="mn-trigger" data-note="mn-2">+</span></div>
-            <div class="section-card-summary">Booking.com, Qatar Airways, flydubai, Emirates Holidays. Eight years across aviation and travel tech, from revenue management to marketing automation.</div>
+    <div class="section-card expanded" data-section-card="career">
+        <div class="section-card-header" tabindex="0" role="button" aria-expanded="true">
+            <div class="section-card-title">Career</div>
+            <div class="section-card-summary">The path from negotiating hotel contracts in Dubai to AI agents in Amsterdam wasn't planned, but it makes sense in hindsight.</div>
             <div class="section-card-hint">
                 <div class="section-card-chevron"></div>
-                expand timeline
+                <span class="section-card-hint-text" data-expand="expand timeline" data-collapse="collapse timeline">collapse timeline</span>
             </div>
         </div>
         <div class="section-card-body">
             <div class="section-card-content">
                 <div class="pipeline">
 
-                    <PipelineNode step="2023 - present" title="Booking.com" subtitle="Supply Growth Marketing · Amsterdam" status="live" statusLabel="Current" id="booking" defaultOpen={false}>
+                    <PipelineNode step="2022 - present" title="Booking.com" subtitle='Commercial Insights &amp; Supply Growth · Amsterdam<span class="mn-trigger" data-note="mn-ams">+</span>' status="live" statusLabel="Current" id="booking" defaultOpen={false}>
                         <div class="pipeline-detail">
                             <div class="pipeline-detail-label">What I Do</div>
                             <div class="pipeline-detail-text">
-                                Lead Peaks 2026 - personalised supply growth campaigns for partners during their peak seasons. Building autonomous detection pipelines that find demand before campaigns are planned.
+                                Commercial growth strategy for Booking.com's partner side - year-round campaigns, experimentation, and go-to-market for the products that help partners sell more. More recently, I've been designing AI agent systems end-to-end: prompts, evaluation frameworks, and the data integrations that wire them into internal tools.
                             </div>
                         </div>
                     </PipelineNode>
 
-                    <PipelineConnector label="Moved to Amsterdam" />
+                    <PipelineConnector label="Left aviation for marketplaces" />
 
-                    <PipelineNode step="2019 - 2023" title="Qatar Airways" subtitle="Revenue Management · Doha" id="qatar">
+                    <PipelineNode step="2021 - 2022" title="Qatar Airways" subtitle="Digital Portfolio Manager, Holidays · Doha" id="qatar">
                         <div class="pipeline-detail">
                             <div class="pipeline-detail-label">What I Did</div>
                             <div class="pipeline-detail-text">
-                                Revenue optimisation across 180+ destinations. Learned that pricing is applied statistics and that good data infrastructure matters more than clever algorithms.
+                                Ran the P&L for their holidays marketplace. Grew revenue 330% by wiring together 100+ supplier APIs into something that could price dynamically. Ran A/B tests on the UX that doubled conversion rates. Learned how much of commerce is really just plumbing.
                             </div>
                         </div>
                     </PipelineNode>
 
-                    <PipelineConnector label="Crossed to the airline side" />
+                    <PipelineConnector label="Same industry, bigger airline" />
 
-                    <PipelineNode step="2017 - 2019" title="flydubai" subtitle="Commercial Analytics · Dubai" id="flydubai">
+                    <PipelineNode step="2016 - 2021" title="flydubai" subtitle="E-Commerce & Digital Marketing, Holidays · Dubai" id="flydubai">
                         <div class="pipeline-detail">
                             <div class="pipeline-detail-label">What I Did</div>
                             <div class="pipeline-detail-text">
-                                Commercial analytics for a fast-growing LCC. Built reporting infrastructure and demand forecasting models.
+                                Founding member of the holidays division. Worked to pick the tech, launch the platform, and manage the Expedia partnership. Five years building a business inside a business.
                             </div>
                         </div>
                     </PipelineNode>
 
-                    <PipelineConnector label="Started in aviation" />
+                    <PipelineConnector label="First startup energy" />
 
-                    <PipelineNode step="2015 - 2017" title="Emirates Holidays" subtitle="Marketing · Dubai" id="emirates">
+                    <PipelineNode step="2013 - 2016" title="Emirates Holidays" subtitle="Non-Air Product Development · Dubai" id="emirates">
                         <div class="pipeline-detail">
                             <div class="pipeline-detail-label">What I Did</div>
                             <div class="pipeline-detail-text">
-                                First role in travel. Campaign management and marketing analytics for the package holidays division.
+                                Where it started. Negotiating hotel contracts across 33 markets, loading rates into systems, learning how travel supply chains actually work from the inside.
                             </div>
                         </div>
                     </PipelineNode>

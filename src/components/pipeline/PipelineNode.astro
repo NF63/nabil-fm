@@ -29,7 +29,7 @@ const {
             <div class="pipeline-node-step">{step}</div>
             <div class="pipeline-node-title-block">
                 <div class="pipeline-node-title">{title}</div>
-                {subtitle && <div class="pipeline-node-subtitle">{subtitle}</div>}
+                {subtitle && <div class="pipeline-node-subtitle" set:html={subtitle} />}
             </div>
             <div class="pipeline-node-chevron"></div>
         </div>

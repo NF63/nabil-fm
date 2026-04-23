@@ -2,22 +2,30 @@
 
 Personal site and publication hub for Nabil Fahim. Built with Astro 6.
 
+At session start, read `handoff.md` if it exists for prior session context.
+
 ## Routes
 
 - **`/`** - Profile page: three-column Tufte layout with section nav dots, expandable career/personal pipelines, JS-positioned margin notes. Defaults to **dark mode**.
-- **`/the-margin/`** - Public version of The Margin blog. Placeholder entries only. Defaults to **light mode**.
+- **`/the-margin/`** - Public version of The Margin blog. Placeholder entries only. Defaults to **light mode**. **Gated:** when `features.theMargin` is `false`, visitors are redirected to `/` via client-side JS. Append `?preview` to bypass the gate for local development.
+
+## Feature Flags
+
+`src/config.ts` controls feature availability at build time:
+
+- **`theMargin`** (default: `false`) - When false: nav link hidden, hero link hidden, `/the-margin/` redirects to `/`. When true: all links render, redirect script excluded. Use `?preview` query param to view the page while the flag is off.
 
 ## Architecture
 
 ### Layouts
 
-- `Base.astro` - shared HTML shell (nav with logo, theme toggle, flash prevention, footer, favicons, OG tags)
-- `Profile.astro` - wraps Base with two-column grid (section nav + main content with padding-right for margin notes)
+- `Base.astro` - shared HTML shell (nav with optional logo via `hideNavLogo` prop, theme toggle, flash prevention, footer, favicons, OG tags). Imports `features` from `config.ts` to conditionally render The Margin nav link.
+- `Profile.astro` - wraps Base with two-column grid (section nav + main content with padding-right for margin notes). `sidebarLogo` prop controls both: shows logo in sidebar AND hides it from header nav (single boolean, no drift).
 
 ### Key Components
 
-- `SectionNav.astro` - left-margin dots (mirrors The Margin's depth toggle visually)
-- `CareerSection.astro` - expandable card with nested PipelineNode career timeline
+- `SectionNav.astro` - left-margin dots (mirrors The Margin's depth toggle visually). `showLogo` prop adds the logo image above the dot track, theme-aware (light/dark variants via CSS display toggle).
+- `CareerSection.astro` - expandable card with nested PipelineNode career timeline. Content updated 2026-04-05 from LinkedIn.
 - `PersonalSection.astro` - expandable card with nested PipelineNode interests
 - `pipeline/PipelineNode.astro` - exact copy from The Margin (DO NOT MODIFY independently)
 - `pipeline/PipelineConnector.astro` - exact copy from The Margin
@@ -30,7 +38,7 @@ Margin notes use a **JS-positioned approach**, NOT the float technique from The 
 - **`+` triggers:** `<span class="mn-trigger" data-note="mn-X">+</span>` placed inline anywhere in the DOM
 - **Note text:** `<div class="margin-note" data-for="mn-X">text</div>` in the `notes` slot of Profile.astro
 - **JS in index.astro** measures trigger positions and sets absolute `top` on notes
-- Repositions after: font load (`document.fonts.ready`), expand/collapse (500ms delay), resize
+- Repositions after: font load (`document.fonts.ready`), expand/collapse (50ms snap, 600ms settlement), resize
 - Hidden on mobile (< 900px)
 - `+` prefix on note text via CSS `::before`
 
@@ -61,7 +69,7 @@ global.css     - entry point, imports the three above
 - Shared localStorage key (`theme`). Toggle persists across routes.
 - **Priority:** localStorage > prefers-color-scheme > route default (profile=dark, margin=light)
 - Flash prevention: inline `<script>` in `<head>` runs before render
-- Logo swaps via CSS `background-image` on `[data-theme="dark"]`
+- Logo swaps via CSS `display: none/block` on `[data-theme="dark"]` for both nav (background-image) and sidebar (`<img>` pairs)
 - Favicons use `<link media="(prefers-color-scheme: ...)">` for dark/light
 - Theme transition: 0.2s ease via `.theme-transition` class, removed after 250ms
 
@@ -139,12 +147,24 @@ Project has local `.npmrc` overriding global Booking Artifactory to `https://reg
 
 ---
 
+## Static Assets
+
+```
+public/images/
+├── logo-light.png          # Nav logo, light mode (dark logo on light bg)
+├── logo-dark.png           # Nav logo, dark mode (light logo on dark bg)
+├── logo-sidebar-light.png  # Sidebar logo, dark mode (light logo on dark bg)
+├── logo-sidebar-dark.png   # Sidebar logo, light mode (dark logo on light bg)
+└── amsterdam-houses.svg    # Margin illustration, uses currentColor
+```
+
+---
+
 ## Git
 
-- Remote: GitHub NF63 (not yet created)
+- Remote: GitHub NF63 (gh CLI authenticated, repo not yet created)
 - Email: 84849635+NF63@users.noreply.github.com
 - NEVER push without explicit user approval
-- 25 commits as of 2026-04-04
 
 ---
 
@@ -166,17 +186,25 @@ Decisions made during the initial build session (2026-04-03/04). These are settl
 4. **No section header labels** (removed "CAREER" / "PERSONAL" above cards - cleaner without).
 5. **Pipeline node layout override** - vertical stack (company/role/date) instead of The Margin's horizontal (step|title|chevron). Done via CSS overrides, PipelineNode.astro unchanged.
 6. **Personal section nodes** - solid dots (not dashed), matching career for uniformity.
-7. **Logo in nav** - CSS background-image swap, not dual `<img>` tags (avoids double download).
+7. **Logo placement** - On profile page: logo in sidebar (above section nav dots, 55px, right-aligned with dots). On other pages: logo in header nav (32px, CSS background-image swap). Controlled by single `sidebarLogo` prop on Profile.astro.
 8. **Shared footer** - in Base.astro, appears on both profile and blog pages.
 9. **expand/collapse** - `interpolate-size: allow-keywords` + `height: auto` instead of `max-height: 3000px` hack.
+10. **Header border** - removed on home page for minimal look. Toggle floats as a quiet utility in the corner.
+11. **Nav link arrow** - `↗` character after "The Margin" link with hover micro-interaction (opacity + translate). Adjacent sibling divider (`.nav-link + .theme-toggle::before`) only renders when link is present.
+12. **Margin illustrations** - SVG doodles (e.g. Amsterdam canal houses) as margin notes. Use `currentColor` for theme-awareness, muted opacity (0.55). No `+` prefix via `.margin-note--illustration::before { display: none }`.
+13. **Feature flags** - `src/config.ts` controls section visibility (theMargin). Build-time flags over HTML comments for single source of truth. (2026-04-05)
+14. **Preview param for gated pages** - `/the-margin/?preview` bypasses client-side redirect when flag is off. Client-side because static site can't do server-side redirects. (2026-04-05)
+15. **Single sidebarLogo prop** - One boolean on Profile.astro controls both sidebar logo display and header logo hiding. Prevents drift. (2026-04-05)
+16. **Career content voice** - Personal/editorial tone, not LinkedIn corporate-speak. Matches site personality. (2026-04-06)
 
 ---
 
 ## Known Issues / Next Steps
 
-- Margin note vertical alignment needs visual verification after font load timing fix
-- Pipeline chevron positioning may need further tuning per user feedback
-- No real article content on the public Margin yet
-- GitHub repo not created, Vercel not repointed
-- Content is placeholder - career descriptions and personal interests need user review
-- Responsive breakpoints (900px, 600px) implemented but not visually tested on real devices
+- Career content rewritten 2026-04-06 (dates from LinkedIn, editorial voice). Personal section still needs voice pass.
+- Amsterdam houses SVG added as margin illustration - needs visual review.
+- Hero intro may want a second line (currently one sentence).
+- Bass amp line appears in both margin note (mn-3) and Bass Guitar pipeline node - pick one.
+- GitHub repo not yet created (gh CLI ready, NF63 authenticated). Vercel not repointed.
+- Responsive breakpoints (900px, 600px) implemented but not visually tested on real devices.
+- Uncommitted changes from this session (content rewrite, preview param gate, CLAUDE.md updates, archive setup).
