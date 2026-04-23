@@ -162,7 +162,7 @@ public/images/
 
 ## Git
 
-- Remote: GitHub NF63 (gh CLI authenticated, repo not yet created)
+- Remote: GitHub NF63/nabil-fm (https://github.com/NF63/nabil-fm)
 - Email: 84849635+NF63@users.noreply.github.com
 - NEVER push without explicit user approval
 
@@ -170,19 +170,20 @@ public/images/
 
 ## Deployment
 
-- Target: Vercel (existing nabil.fm domain, currently points to old my-site)
-- Not yet deployed - local development only
-- Old site preserved at: `~/Desktop/Everything/Personal/web-apps-and-projects/my-site/`
+- Deployed on Vercel from GitHub repo NF63/nabil-fm
+- Domain: nabil.fm / www.nabil.fm
+- Auto-deploys on push to main
+- Old site preserved at: `~/Desktop/Everything/Personal/web-apps-and-projects/my-site/` (NF63/my-site repo, domains removed)
 
 ---
 
 ## Design Decisions Log
 
-Decisions made during the initial build session (2026-04-03/04). These are settled unless the user explicitly revisits them.
+Decisions made during build sessions (2026-04-03 onwards). These are settled unless the user explicitly revisits them.
 
 1. **Margin notes: JS-positioned, not float** - float breaks in flex containers. Tried 3 approaches before landing on JS positioning.
 2. **Scroll tracking: scroll-position, not IntersectionObserver** - IO failed on short pages (collapsed sections never entered trigger zone).
-3. **Section nav labels:** nabil.fm, career.md, out-of-office.md - matching the card titles for consistency.
+3. **Section nav labels:** nabil.fm, Career, Out of Office - matching the card titles.
 4. **No section header labels** (removed "CAREER" / "PERSONAL" above cards - cleaner without).
 5. **Pipeline node layout override** - vertical stack (company/role/date) instead of The Margin's horizontal (step|title|chevron). Done via CSS overrides, PipelineNode.astro unchanged.
 6. **Personal section nodes** - solid dots (not dashed), matching career for uniformity.
@@ -196,15 +197,16 @@ Decisions made during the initial build session (2026-04-03/04). These are settl
 14. **Preview param for gated pages** - `/the-margin/?preview` bypasses client-side redirect when flag is off. Client-side because static site can't do server-side redirects. (2026-04-05)
 15. **Single sidebarLogo prop** - One boolean on Profile.astro controls both sidebar logo display and header logo hiding. Prevents drift. (2026-04-05)
 16. **Career content voice** - Personal/editorial tone, not LinkedIn corporate-speak. Matches site personality. (2026-04-06)
+17. **Blank step props for personal section** - Removed emoji step labels, left step="" for cleaner Tufte aesthetic. (2026-04-23)
+18. **"Over a decade" not specific year count** - Avoids needing annual updates. Hero and career summary both use this phrasing. (2026-04-23)
+19. **New GitHub repo over replacing my-site** - Created NF63/nabil-fm rather than pushing into NF63/my-site. Different tech stack (Astro vs static HTML), cleaner git history. Old repo archived. (2026-04-23)
 
 ---
 
 ## Known Issues / Next Steps
 
-- Career content rewritten 2026-04-06 (dates from LinkedIn, editorial voice). Personal section still needs voice pass.
-- Amsterdam houses SVG added as margin illustration - needs visual review.
-- Hero intro may want a second line (currently one sentence).
-- Bass amp line appears in both margin note (mn-3) and Bass Guitar pipeline node - pick one.
-- GitHub repo not yet created (gh CLI ready, NF63 authenticated). Vercel not repointed.
+- Meta description still defaults to "Nabil Fahim" - needs a proper description for search/sharing.
+- OG image (1200x630px) not created - social sharing previews will look blank.
+- Amsterdam houses SVG colour/visibility needs visual review when expanding Career.
 - Responsive breakpoints (900px, 600px) implemented but not visually tested on real devices.
-- Uncommitted changes from this session (content rewrite, preview param gate, CLAUDE.md updates, archive setup).
+- PipelineNode.astro modified (set:html for subtitle) - the-margin needs syncing via margin-nabil-fm-sync skill.
