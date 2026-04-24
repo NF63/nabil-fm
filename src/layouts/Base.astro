@@ -7,7 +7,7 @@ interface Props {
   description?: string;
   hideNavLogo?: boolean;
 }
-const { title, description = 'Nabil Fahim', hideNavLogo = false } = Astro.props;
+const { title, description = 'Nabil Fahim – commercial strategy and AI at Booking.com. Previously Qatar Airways, flydubai, Emirates.', hideNavLogo = false } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +28,13 @@ const { title, description = 'Nabil Fahim', hideNavLogo = false } = Astro.props;
     <meta property="og:description" content={description}>
     <meta property="og:type" content="website">
     <meta property="og:url" content={Astro.url.href}>
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://www.nabil.fm/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content="https://www.nabil.fm/images/og-image.png">
     <link rel="manifest" href="/site.webmanifest">
     <script is:inline>
         // Runs before render to prevent flash.
