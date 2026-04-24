@@ -906,16 +906,9 @@
         padding: 32px 20px 80px;
     }
 
-    /* Section nav: horizontal row above content */
+    /* Section nav: hide on mobile */
     .section-nav {
-        position: relative;
-        top: auto;
-        width: auto;
-        flex-direction: row;
-        align-items: center;
-        padding: 0 0 24px;
-        margin-bottom: 24px;
-        border-bottom: 1px solid var(--border);
+        display: none;
     }
 
     .section-nav-logo {
@@ -968,12 +961,21 @@
     }
 
     /* Hero adjustments */
+    .profile-hero {
+        margin-bottom: 28px;
+        padding-bottom: 28px;
+    }
+
     .profile-hero h1 {
         font-size: 28px;
     }
 
     .profile-descriptor {
         font-size: 17px;
+    }
+
+    .profile-gap-divider {
+        margin: 28px 0;
     }
 
     /* Section cards: tighter padding */
