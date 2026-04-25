@@ -5,25 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ACME Un-stresser - Your calm guide through the financial maze</title>
 <meta name="description" content="AI-powered debt escape tool for the Netherlands. Whale x Anthropic Hackathon 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --orange: #F5A623;
-  --orange-warm: #F7B thirteen;
-  --orange-light: #FFF8F0;
-  --orange-glow: rgba(245, 166, 35, 0.12);
+  --orange: #C4842B;
+  --orange-light: #f4f2eb;
   --navy: #1C2333;
   --navy-light: #2D3748;
-  --bg: #FEFCFA;
+  --bg: #f4f2eb;
   --text: #1C2333;
-  --muted: #7A8290;
-  --bar-empty: #E8E5E0;
-  --border: #E2DED8;
-  --card-bg: #FFFFFF;
-  --urgent-red: #E85D4A;
-  --warn-amber: #E8A94A;
-  --ok-green: #4AA874;
+  --muted: #6B7180;
+  --bar-empty: #ddd9d0;
+  --border: #d5d0c7;
+  --card-bg: #faf9f6;
+  --urgent-red: #B84233;
+  --warn-amber: #A67B2A;
+  --ok-green: #3D7A56;
+  --display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 html, body {
@@ -31,10 +34,10 @@ html, body {
   overflow: hidden;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-family: var(--body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 /* ── Progress bars ─────────────────────────────────────────────── */
@@ -52,17 +55,15 @@ html, body {
 
 .progress-bar {
   flex: 1;
-  height: 3px;
+  height: 2px;
   background: var(--bar-empty);
-  border-radius: 2px;
   overflow: hidden;
 }
 
 .progress-bar .fill {
   height: 100%;
   width: 0%;
-  background: var(--orange);
-  border-radius: 2px;
+  background: var(--navy);
   transition: none;
 }
 
@@ -80,7 +81,7 @@ html, body {
   padding: 32px 40px 28px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.45s ease;
 }
 
 .slide.active {
@@ -89,56 +90,59 @@ html, body {
 }
 
 .slide.active .anim {
-  animation: fadeInUp 0.55s ease both;
+  animation: fadeInUp 0.5s ease both;
 }
 
-.slide.active .anim:nth-child(2) { animation-delay: 0.12s; }
-.slide.active .anim:nth-child(3) { animation-delay: 0.24s; }
-.slide.active .anim:nth-child(4) { animation-delay: 0.36s; }
-.slide.active .anim:nth-child(5) { animation-delay: 0.48s; }
-.slide.active .anim:nth-child(6) { animation-delay: 0.60s; }
+.slide.active .anim:nth-child(2) { animation-delay: 0.1s; }
+.slide.active .anim:nth-child(3) { animation-delay: 0.2s; }
+.slide.active .anim:nth-child(4) { animation-delay: 0.3s; }
+.slide.active .anim:nth-child(5) { animation-delay: 0.4s; }
+.slide.active .anim:nth-child(6) { animation-delay: 0.5s; }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(18px); }
+  from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Typography ────────────────────────────────────────────────── */
 
 .hero-number {
+  font-family: var(--display);
   font-size: clamp(3.5rem, 9vw, 7rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 1;
   color: var(--navy);
 }
 
 .hero-label {
-  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
   color: var(--muted);
   max-width: 500px;
   text-align: center;
   margin-top: 16px;
+  line-height: 1.5;
 }
 
 .hero-sublabel {
   font-size: clamp(0.85rem, 1.5vw, 1rem);
   color: var(--muted);
-  opacity: 0.7;
+  opacity: 0.6;
   margin-top: 8px;
 }
 
 .slide-heading {
+  font-family: var(--display);
   font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-  font-weight: 700;
+  font-weight: 400;
   text-align: center;
   max-width: 700px;
-  line-height: 1.25;
+  line-height: 1.3;
   color: var(--navy);
 }
 
 .slide-body {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   color: var(--muted);
   text-align: center;
   max-width: 560px;
@@ -146,16 +150,16 @@ html, body {
 }
 
 .highlight {
-  color: var(--orange);
-  font-weight: 700;
+  color: var(--urgent-red);
+  font-weight: 500;
 }
 
 .pivot {
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  font-weight: 700;
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+  font-weight: 400;
   color: var(--navy);
   margin-top: 28px;
-  opacity: 0.85;
 }
 
 /* ── Logo ──────────────────────────────────────────────────────── */
@@ -172,10 +176,10 @@ html, body {
 }
 
 .logo-wordmark {
+  font-family: var(--display);
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--navy);
-  letter-spacing: -0.02em;
 }
 
 /* ── Stat pills ────────────────────────────────────────────────── */
@@ -190,62 +194,24 @@ html, body {
 
 .stat-pill {
   background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px 22px;
+  border-top: 2px solid var(--navy);
+  padding: 16px 22px;
   text-align: center;
   min-width: 140px;
 }
 
 .stat-pill .num {
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  font-weight: 400;
   color: var(--navy);
 }
 
 .stat-pill .lbl {
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-/* ── Three-column features ─────────────────────────────────────── */
-
-.features {
-  display: flex;
-  gap: 32px;
-  margin-top: 36px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.feature {
-  text-align: center;
-  max-width: 200px;
-}
-
-.feature-icon {
-  width: 56px;
-  height: 56px;
-  background: var(--orange-glow);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 12px;
-  font-size: 1.5rem;
-}
-
-.feature-title {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--navy);
-}
-
-.feature-desc {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--muted);
   margin-top: 4px;
+  line-height: 1.4;
 }
 
 /* ── Metric cards ──────────────────────────────────────────────── */
@@ -260,23 +226,24 @@ html, body {
 
 .metric-card {
   background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  border-top: 2px solid var(--navy);
   padding: 24px 28px;
   text-align: center;
   min-width: 150px;
 }
 
 .metric-card .num {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--orange);
+  font-family: var(--display);
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--navy);
 }
 
 .metric-card .lbl {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--muted);
   margin-top: 4px;
+  line-height: 1.4;
 }
 
 /* ── Hero split layout ─────────────────────────────────────────── */
@@ -322,30 +289,6 @@ html, body {
   line-height: 1.4;
 }
 
-.complexity-pills {
-  position: relative;
-  height: 100px;
-  margin-top: 14px;
-  overflow: visible;
-}
-
-.cpill {
-  position: absolute;
-  font-weight: 600;
-  padding: 5px 12px;
-  border-radius: 6px;
-  white-space: nowrap;
-  border: 1px solid;
-}
-
-.cpill:nth-child(1) { font-size: 0.82rem; background: #FEE8E5; color: var(--urgent-red); border-color: rgba(232, 93, 74, 0.2); top: 0; left: 0; transform: rotate(-2deg); }
-.cpill:nth-child(2) { font-size: 0.72rem; background: #FEF3E0; color: #B07D2A; border-color: rgba(176, 125, 42, 0.2); top: 4px; left: 200px; transform: rotate(1.5deg); }
-.cpill:nth-child(3) { font-size: 0.9rem; background: #FEE8E5; color: var(--urgent-red); border-color: rgba(232, 93, 74, 0.25); top: 34px; left: 30px; transform: rotate(1deg); z-index: 2; }
-.cpill:nth-child(4) { font-size: 0.65rem; background: #F3E8FF; color: #7C3AED; border-color: rgba(124, 58, 237, 0.15); top: 38px; left: 240px; transform: rotate(-1deg); }
-.cpill:nth-child(5) { font-size: 0.78rem; background: #FEE8E5; color: var(--urgent-red); border-color: rgba(232, 93, 74, 0.2); top: 68px; left: 60px; transform: rotate(-1.5deg); }
-.cpill:nth-child(6) { font-size: 0.68rem; background: #FEF3E0; color: #B07D2A; border-color: rgba(176, 125, 42, 0.2); top: 66px; left: 220px; transform: rotate(2deg); }
-.cpill:nth-child(7) { font-size: 0.75rem; background: #F3E8FF; color: #7C3AED; border-color: rgba(124, 58, 237, 0.15); top: 12px; left: 320px; transform: rotate(-0.5deg); }
-
 .hero-right {
   flex-shrink: 0;
 }
@@ -365,10 +308,10 @@ html, body {
 .phone-frame {
   width: 260px;
   border-radius: 30px;
-  border: 3px solid var(--navy);
-  background: var(--bg);
+  border: 2px solid var(--navy);
+  background: #faf9f6;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(28, 35, 51, 0.12);
+  box-shadow: 0 12px 40px rgba(28, 35, 51, 0.08);
   position: relative;
 }
 
@@ -405,19 +348,19 @@ html, body {
 }
 
 .chat-bubble {
-  background: var(--orange-light);
-  border-radius: 14px 14px 14px 4px;
+  background: #eceae3;
+  border-radius: 2px;
   padding: 12px 14px;
   font-size: 0.78rem;
   color: var(--navy);
   margin-bottom: 10px;
   line-height: 1.45;
+  border-left: 2px solid var(--navy);
 }
 
 .benefit-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 12px;
   overflow: hidden;
   margin-bottom: 10px;
 }
@@ -439,13 +382,15 @@ html, body {
 }
 
 .benefit-item .amount {
-  font-weight: 700;
+  font-family: var(--display);
+  font-weight: 400;
   color: var(--navy);
+  font-size: 0.82rem;
 }
 
 .benefit-total {
-  background: var(--orange);
-  color: white;
+  background: var(--navy);
+  color: #faf9f6;
   padding: 12px 14px;
   display: flex;
   justify-content: space-between;
@@ -455,10 +400,10 @@ html, body {
 }
 
 .phone-cta {
-  background: var(--orange);
-  color: white;
+  background: var(--navy);
+  color: #faf9f6;
   border: none;
-  border-radius: 10px;
+  border-radius: 2px;
   padding: 10px;
   width: 100%;
   font-size: 0.78rem;
@@ -480,9 +425,8 @@ html, body {
 
 .letter-mock {
   width: 220px;
-  background: white;
+  background: #faf9f6;
   border: 1px solid var(--border);
-  border-radius: 8px;
   padding: 20px;
   font-size: 0.7rem;
   color: var(--muted);
@@ -506,7 +450,7 @@ html, body {
   width: 16px;
   height: 16px;
   background: var(--navy);
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 .letter-mock .field { margin-bottom: 6px; }
@@ -516,19 +460,20 @@ html, body {
   display: flex;
   align-items: center;
   font-size: 1.8rem;
-  color: var(--orange);
+  color: var(--navy);
+  opacity: 0.3;
 }
 
 .extraction-card {
   width: 260px;
-  background: white;
+  background: #faf9f6;
   border: 1px solid var(--border);
-  border-radius: 12px;
   overflow: hidden;
 }
 
 .extraction-card .card-header {
-  background: var(--orange-light);
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
   padding: 12px 16px;
   font-weight: 700;
   font-size: 0.85rem;
@@ -547,7 +492,7 @@ html, body {
   justify-content: space-between;
   padding: 6px 0;
   font-size: 0.78rem;
-  border-bottom: 1px solid #f3f0ec;
+  border-bottom: 1px solid #eceae3;
 }
 
 .extraction-field:last-child { border-bottom: none; }
@@ -555,8 +500,8 @@ html, body {
 .extraction-field .value { font-weight: 600; color: var(--navy); }
 
 .extraction-explanation {
-  background: var(--orange-light);
-  border-radius: 8px;
+  background: #eceae3;
+  border-radius: 2px;
   padding: 10px 12px;
   margin-top: 10px;
   font-size: 0.73rem;
@@ -567,26 +512,25 @@ html, body {
 /* ── Action plan mockup ────────────────────────────────────────── */
 
 .action-plan {
-  width: 340px;
+  width: 380px;
   max-width: 100%;
   margin-top: 28px;
 }
 
 .action-item {
   background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  border-bottom: 1px solid var(--border);
   padding: 16px 18px;
-  margin-bottom: 10px;
   display: flex;
   gap: 14px;
   align-items: flex-start;
 }
 
+.action-item:first-child { border-top: 1px solid var(--border); }
+
 .action-urgency {
-  width: 8px;
+  width: 3px;
   min-height: 40px;
-  border-radius: 4px;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -612,13 +556,12 @@ html, body {
   font-size: 0.65rem;
   font-weight: 600;
   padding: 2px 8px;
-  border-radius: 6px;
   margin-top: 6px;
 }
 
-.badge-urgent { background: #FEE8E5; color: var(--urgent-red); }
-.badge-week   { background: #FEF3E0; color: #B07D2A; }
-.badge-month  { background: #E5F6EC; color: #2D7A4F; }
+.badge-urgent { background: none; color: var(--urgent-red); border-left: 2px solid var(--urgent-red); padding-left: 6px; }
+.badge-week   { background: none; color: var(--warn-amber); border-left: 2px solid var(--warn-amber); padding-left: 6px; }
+.badge-month  { background: none; color: var(--ok-green); border-left: 2px solid var(--ok-green); padding-left: 6px; }
 
 /* ── CTA slide ─────────────────────────────────────────────────── */
 
@@ -639,18 +582,16 @@ html, body {
 .cta-link {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 14px;
   padding: 18px 24px;
   text-decoration: none;
   color: var(--navy);
   text-align: center;
   min-width: 160px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s;
 }
 
 .cta-link:hover {
-  border-color: var(--orange);
-  box-shadow: 0 4px 16px var(--orange-glow);
+  border-color: var(--navy);
 }
 
 .cta-link .link-icon { font-size: 1.5rem; margin-bottom: 6px; }
@@ -670,21 +611,19 @@ html, body {
 
 .invite-btn {
   display: inline-block;
-  background: var(--orange);
-  color: white;
+  background: var(--navy);
+  color: #faf9f6;
   border: none;
-  border-radius: 12px;
   padding: 14px 32px;
   font-size: 1rem;
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: opacity 0.15s;
 }
 
 .invite-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.3);
+  opacity: 0.85;
 }
 
 /* ── Expandable sections ───────────────────────────────────────── */
@@ -697,14 +636,16 @@ html, body {
 }
 
 .expand-sections details {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
 
+.expand-sections details:first-child {
+  border-top: 1px solid var(--border);
+}
+
 .expand-sections summary {
-  padding: 14px 18px;
+  padding: 14px 0;
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
@@ -723,11 +664,11 @@ html, body {
 }
 
 .expand-sections details[open] summary::after {
-  content: '-';
+  content: '\2212';
 }
 
 .expand-content {
-  padding: 0 18px 18px;
+  padding: 0 0 18px;
   font-size: 0.82rem;
   color: var(--muted);
   line-height: 1.7;
@@ -792,12 +733,10 @@ html, body {
 
 .pause-indicator .pause-label {
   background: var(--navy);
-  color: white;
+  color: #faf9f6;
   padding: 10px 24px;
-  border-radius: 24px;
   font-size: 0.82rem;
   font-weight: 600;
-  box-shadow: 0 4px 20px rgba(28, 35, 51, 0.25);
 }
 
 .pause-indicator.visible { opacity: 0.9; }
@@ -807,7 +746,7 @@ html, body {
 .team {
   font-size: 0.72rem;
   color: var(--muted);
-  opacity: 0.6;
+  opacity: 0.5;
   margin-top: 24px;
   text-align: center;
 }
@@ -818,7 +757,6 @@ html, body {
   .slide { padding: 28px 20px 20px; }
   .scan-demo { flex-direction: column; align-items: center; }
   .scan-arrow { transform: rotate(90deg); }
-  .features { gap: 20px; }
   .phone-frame { width: 220px; }
   .stat-row, .metric-row { gap: 12px; }
   .cta-links { flex-direction: column; align-items: center; }
@@ -897,7 +835,7 @@ html, body {
       <div class="anim logo-group" style="margin-bottom: 20px;">
         <svg class="logo-mark" viewBox="0 0 100 70" fill="none">
           <line x1="5" y1="50" x2="95" y2="50" stroke="#1C2333" stroke-width="4.5" stroke-linecap="round"/>
-          <circle cx="58" cy="50" r="22" fill="#F5A623"/>
+          <circle cx="58" cy="50" r="22" fill="#C4842B"/>
         </svg>
         <span class="logo-wordmark">ACME Un-stresser</span>
       </div>
@@ -911,7 +849,7 @@ html, body {
           <div class="phone-header">
             <svg class="mini-logo" viewBox="0 0 100 70" fill="none">
               <line x1="5" y1="50" x2="95" y2="50" stroke="#1C2333" stroke-width="5" stroke-linecap="round"/>
-              <circle cx="58" cy="50" r="22" fill="#F5A623"/>
+              <circle cx="58" cy="50" r="22" fill="#C4842B"/>
             </svg>
             <span class="name">ACME Un-stresser</span>
           </div>
@@ -962,7 +900,7 @@ html, body {
     <div class="scan-arrow">&#10132;</div>
     <div class="extraction-card">
       <div class="card-header">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         Traffic Fine - Escalated Notice
       </div>
       <div class="card-body">
