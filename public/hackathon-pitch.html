@@ -12,19 +12,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --orange: #C4842B;
-  --orange-light: #f4f2eb;
-  --navy: #1C2333;
-  --navy-light: #2D3748;
+  --primary: #3B4878;
+  --primary-soft: #E3E5F0;
+  --text: #2A2825;
   --bg: #f4f2eb;
-  --text: #1C2333;
   --muted: #6B7180;
   --bar-empty: #ddd9d0;
   --border: #d5d0c7;
   --card-bg: #faf9f6;
-  --urgent-red: #B84233;
-  --warn-amber: #A67B2A;
-  --ok-green: #3D7A56;
+  --destructive: #B84233;
+  --warning: #9E7B24;
+  --success: #2D7A56;
+  --money-debt: #8B3E2A;
   --display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
   --body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
@@ -63,7 +62,7 @@ html, body {
 .progress-bar .fill {
   height: 100%;
   width: 0%;
-  background: var(--navy);
+  background: var(--primary);
   transition: none;
 }
 
@@ -112,7 +111,7 @@ html, body {
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1;
-  color: var(--navy);
+  color: var(--primary);
 }
 
 .hero-label {
@@ -138,7 +137,7 @@ html, body {
   text-align: center;
   max-width: 700px;
   line-height: 1.3;
-  color: var(--navy);
+  color: var(--primary);
 }
 
 .slide-body {
@@ -150,7 +149,7 @@ html, body {
 }
 
 .highlight {
-  color: var(--urgent-red);
+  color: var(--destructive);
   font-weight: 500;
 }
 
@@ -158,7 +157,7 @@ html, body {
   font-family: var(--display);
   font-size: clamp(1.3rem, 2.8vw, 1.8rem);
   font-weight: 400;
-  color: var(--navy);
+  color: var(--primary);
   margin-top: 28px;
 }
 
@@ -179,7 +178,7 @@ html, body {
   font-family: var(--display);
   font-size: 1.5rem;
   font-weight: 400;
-  color: var(--navy);
+  color: var(--primary);
 }
 
 /* ── Stat pills ────────────────────────────────────────────────── */
@@ -194,7 +193,7 @@ html, body {
 
 .stat-pill {
   background: var(--card-bg);
-  border-top: 2px solid var(--navy);
+  border-top: 2px solid var(--primary);
   padding: 16px 22px;
   text-align: center;
   min-width: 140px;
@@ -204,7 +203,7 @@ html, body {
   font-family: var(--display);
   font-size: 1.6rem;
   font-weight: 400;
-  color: var(--navy);
+  color: var(--primary);
 }
 
 .stat-pill .lbl {
@@ -226,7 +225,7 @@ html, body {
 
 .metric-card {
   background: var(--card-bg);
-  border-top: 2px solid var(--navy);
+  border-top: 2px solid var(--primary);
   padding: 24px 28px;
   text-align: center;
   min-width: 150px;
@@ -236,7 +235,7 @@ html, body {
   font-family: var(--display);
   font-size: 2.4rem;
   font-weight: 400;
-  color: var(--navy);
+  color: var(--primary);
 }
 
 .metric-card .lbl {
@@ -281,7 +280,7 @@ html, body {
 
 .hero-left .hero-connector {
   font-size: clamp(1rem, 2vw, 1.3rem);
-  color: var(--navy);
+  color: var(--primary);
   font-weight: 600;
   margin-top: 20px;
   padding-top: 16px;
@@ -308,7 +307,7 @@ html, body {
 .phone-frame {
   width: 260px;
   border-radius: 30px;
-  border: 2px solid var(--navy);
+  border: 2px solid var(--primary);
   background: #faf9f6;
   overflow: hidden;
   box-shadow: 0 12px 40px rgba(28, 35, 51, 0.08);
@@ -318,7 +317,7 @@ html, body {
 .phone-notch {
   width: 90px;
   height: 24px;
-  background: var(--navy);
+  background: var(--primary);
   border-radius: 0 0 14px 14px;
   margin: 0 auto;
 }
@@ -344,7 +343,7 @@ html, body {
 .phone-header .name {
   font-weight: 700;
   font-size: 0.85rem;
-  color: var(--navy);
+  color: var(--primary);
 }
 
 .chat-bubble {
@@ -352,10 +351,10 @@ html, body {
   border-radius: 2px;
   padding: 12px 14px;
   font-size: 0.78rem;
-  color: var(--navy);
+  color: var(--primary);
   margin-bottom: 10px;
   line-height: 1.45;
-  border-left: 2px solid var(--navy);
+  border-left: 2px solid var(--primary);
 }
 
 .benefit-card {
@@ -384,12 +383,12 @@ html, body {
 .benefit-item .amount {
   font-family: var(--display);
   font-weight: 400;
-  color: var(--navy);
+  color: var(--primary);
   font-size: 0.82rem;
 }
 
 .benefit-total {
-  background: var(--navy);
+  background: var(--primary);
   color: #faf9f6;
   padding: 12px 14px;
   display: flex;
@@ -400,7 +399,7 @@ html, body {
 }
 
 .phone-cta {
-  background: var(--navy);
+  background: var(--primary);
   color: #faf9f6;
   border: none;
   border-radius: 2px;
@@ -436,7 +435,7 @@ html, body {
 
 .letter-mock .rijkslogo {
   font-weight: 800;
-  color: var(--navy);
+  color: var(--primary);
   font-size: 0.65rem;
   margin-bottom: 12px;
   display: flex;
@@ -449,18 +448,18 @@ html, body {
   display: block;
   width: 16px;
   height: 16px;
-  background: var(--navy);
+  background: var(--primary);
   border-radius: 1px;
 }
 
 .letter-mock .field { margin-bottom: 6px; }
-.letter-mock .field strong { color: var(--navy); }
+.letter-mock .field strong { color: var(--primary); }
 
 .scan-arrow {
   display: flex;
   align-items: center;
   font-size: 1.8rem;
-  color: var(--navy);
+  color: var(--primary);
   opacity: 0.3;
 }
 
@@ -477,7 +476,7 @@ html, body {
   padding: 12px 16px;
   font-weight: 700;
   font-size: 0.85rem;
-  color: var(--navy);
+  color: var(--primary);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -497,7 +496,7 @@ html, body {
 
 .extraction-field:last-child { border-bottom: none; }
 .extraction-field .label { color: var(--muted); }
-.extraction-field .value { font-weight: 600; color: var(--navy); }
+.extraction-field .value { font-weight: 600; color: var(--primary); }
 
 .extraction-explanation {
   background: #eceae3;
@@ -505,7 +504,7 @@ html, body {
   padding: 10px 12px;
   margin-top: 10px;
   font-size: 0.73rem;
-  color: var(--navy);
+  color: var(--primary);
   line-height: 1.5;
 }
 
@@ -535,14 +534,14 @@ html, body {
   margin-top: 2px;
 }
 
-.action-urgency.urgent { background: var(--urgent-red); }
-.action-urgency.week   { background: var(--warn-amber); }
-.action-urgency.month  { background: var(--ok-green); }
+.action-urgency.urgent { background: var(--destructive); }
+.action-urgency.week   { background: var(--warning); }
+.action-urgency.month  { background: var(--success); }
 
 .action-content .title {
   font-weight: 700;
   font-size: 0.85rem;
-  color: var(--navy);
+  color: var(--primary);
 }
 
 .action-content .desc {
@@ -559,9 +558,9 @@ html, body {
   margin-top: 6px;
 }
 
-.badge-urgent { background: none; color: var(--urgent-red); border-left: 2px solid var(--urgent-red); padding-left: 6px; }
-.badge-week   { background: none; color: var(--warn-amber); border-left: 2px solid var(--warn-amber); padding-left: 6px; }
-.badge-month  { background: none; color: var(--ok-green); border-left: 2px solid var(--ok-green); padding-left: 6px; }
+.badge-urgent { background: none; color: var(--destructive); border-left: 2px solid var(--destructive); padding-left: 6px; }
+.badge-week   { background: none; color: var(--warning); border-left: 2px solid var(--warning); padding-left: 6px; }
+.badge-month  { background: none; color: var(--success); border-left: 2px solid var(--success); padding-left: 6px; }
 
 /* ── CTA slide ─────────────────────────────────────────────────── */
 
@@ -584,14 +583,14 @@ html, body {
   border: 1px solid var(--border);
   padding: 18px 24px;
   text-decoration: none;
-  color: var(--navy);
+  color: var(--primary);
   text-align: center;
   min-width: 160px;
   transition: border-color 0.2s;
 }
 
 .cta-link:hover {
-  border-color: var(--navy);
+  border-color: var(--primary);
 }
 
 .cta-link .link-icon { font-size: 1.5rem; margin-bottom: 6px; }
@@ -611,7 +610,7 @@ html, body {
 
 .invite-btn {
   display: inline-block;
-  background: var(--navy);
+  background: var(--primary);
   color: #faf9f6;
   border: none;
   padding: 14px 32px;
@@ -649,7 +648,7 @@ html, body {
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
-  color: var(--navy);
+  color: var(--primary);
   list-style: none;
   display: flex;
   justify-content: space-between;
@@ -676,7 +675,7 @@ html, body {
 
 .expand-content h4 {
   font-size: 0.85rem;
-  color: var(--navy);
+  color: var(--primary);
   margin: 14px 0 6px;
 }
 
@@ -709,7 +708,7 @@ html, body {
 
 .comp-table th {
   font-weight: 700;
-  color: var(--navy);
+  color: var(--primary);
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -732,7 +731,7 @@ html, body {
 }
 
 .pause-indicator .pause-label {
-  background: var(--navy);
+  background: var(--primary);
   color: #faf9f6;
   padding: 10px 24px;
   font-size: 0.82rem;
@@ -816,16 +815,16 @@ html, body {
 
     <div style="flex: 1; min-width: 0;">
       <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); opacity: 0.5; margin-bottom: 12px;">The investment</div>
-      <div style="font-family: var(--display); font-size: clamp(2.8rem, 6vw, 4.5rem); color: var(--navy); line-height: 1;">EUR 130M</div>
+      <div style="font-family: var(--display); font-size: clamp(2.8rem, 6vw, 4.5rem); color: var(--primary); line-height: 1;">EUR 130M</div>
       <div style="font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--muted); margin-top: 8px;">spent every year getting people to ask for help</div>
       <div style="margin-top: 24px; border-top: 1px solid var(--border); padding-top: 16px;">
-        <div style="font-size: 0.82rem; color: var(--navy); line-height: 1.7;">
+        <div style="font-size: 0.82rem; color: var(--primary); line-height: 1.7;">
           <strong>Kom uit je schuld</strong> - national campaign since 2019<br>
           <strong>3.5 million</strong> Geldfit visits in 2023 (3x increase)<br>
           <strong>50,000</strong> callers to the Geldfit helpline<br>
           <strong>Queen Maxima</strong> - "Het is jouw schuld, maar het is niet jouw schuld"
         </div>
-        <div style="font-size: 0.82rem; color: var(--ok-green); font-weight: 600; margin-top: 14px;">The awareness campaigns are working.</div>
+        <div style="font-size: 0.82rem; color: var(--success); font-weight: 600; margin-top: 14px;">The awareness campaigns are working.</div>
       </div>
     </div>
 
@@ -833,22 +832,22 @@ html, body {
 
     <div style="flex: 1; min-width: 0;">
       <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); opacity: 0.5; margin-bottom: 12px;">The drop-off</div>
-      <div style="font-family: var(--display); font-size: clamp(2.8rem, 6vw, 4.5rem); color: var(--urgent-red); line-height: 1;">40%</div>
+      <div style="font-family: var(--display); font-size: clamp(2.8rem, 6vw, 4.5rem); color: var(--destructive); line-height: 1;">40%</div>
       <div style="font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--muted); margin-top: 8px;">give up before getting help</div>
       <div style="margin-top: 24px; border-top: 1px solid var(--border); padding-top: 16px;">
-        <div style="font-size: 0.82rem; color: var(--navy); line-height: 1.7;">
+        <div style="font-size: 0.82rem; color: var(--primary); line-height: 1.7;">
           <strong>8 years</strong> average wait before seeking help<br>
           <strong>11%</strong> reach rate - only 82,000 reach formal assistance<br>
           <strong>13 creditors</strong> per household to contact<br>
           <strong>Half</strong> of debt counselling clients can't read the forms
         </div>
-        <div style="font-size: 0.82rem; color: var(--urgent-red); font-weight: 600; margin-top: 14px;">The system catches them in Dutch and loses them there.</div>
+        <div style="font-size: 0.82rem; color: var(--destructive); font-weight: 600; margin-top: 14px;">The system catches them in Dutch and loses them there.</div>
       </div>
     </div>
 
   </div>
 
-  <p class="anim" style="font-family: var(--display); font-size: clamp(1.4rem, 3vw, 2.2rem); color: var(--navy); text-align: center; margin-top: 36px; max-width: 760px; line-height: 1.35;">The campaigns got people to raise their hand.<br>There's nothing on the other side that speaks their language.</p>
+  <p class="anim" style="font-family: var(--display); font-size: clamp(1.4rem, 3vw, 2.2rem); color: var(--primary); text-align: center; margin-top: 36px; max-width: 760px; line-height: 1.35;">The campaigns got people to raise their hand.<br>There's nothing on the other side that speaks their language.</p>
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
@@ -860,12 +859,12 @@ html, body {
     <div class="hero-left">
       <div class="anim logo-group" style="margin-bottom: 24px;">
         <svg class="logo-mark" viewBox="0 0 100 70" fill="none">
-          <line x1="5" y1="50" x2="95" y2="50" stroke="#1C2333" stroke-width="4.5" stroke-linecap="round"/>
-          <circle cx="58" cy="50" r="22" fill="#C4842B"/>
+          <line x1="5" y1="50" x2="95" y2="50" stroke="#2A2825" stroke-width="4.5" stroke-linecap="round"/>
+          <circle cx="58" cy="50" r="22" fill="#3B4878"/>
         </svg>
         <span class="logo-wordmark">ACME Un-stresser</span>
       </div>
-      <h2 class="anim" style="font-family: var(--display); font-size: clamp(1.6rem, 3.2vw, 2.4rem); color: var(--navy); text-align: left; line-height: 1.3; max-width: 440px;">An interface that speaks your language and brings calm to the noise.</h2>
+      <h2 class="anim" style="font-family: var(--display); font-size: clamp(1.6rem, 3.2vw, 2.4rem); color: var(--primary); text-align: left; line-height: 1.3; max-width: 440px;">An interface that speaks your language and brings calm to the noise.</h2>
       <div class="anim" style="margin-top: 24px; border-top: 1px solid var(--border); padding-top: 18px;">
         <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.8;">
           Photograph the letters you're afraid to open.<br>
@@ -873,7 +872,7 @@ html, body {
           See what you're owed. Get an action plan.<br>
           Paperwork generated, ready to send.
         </div>
-        <div style="font-size: 0.82rem; color: var(--navy); font-weight: 500; margin-top: 16px;">No DigiD. No login. No Dutch required.</div>
+        <div style="font-size: 0.82rem; color: var(--primary); font-weight: 500; margin-top: 16px;">No DigiD. No login. No Dutch required.</div>
       </div>
     </div>
     <div class="anim hero-right">
@@ -882,8 +881,8 @@ html, body {
         <div class="phone-content">
           <div class="phone-header">
             <svg class="mini-logo" viewBox="0 0 100 70" fill="none">
-              <line x1="5" y1="50" x2="95" y2="50" stroke="#1C2333" stroke-width="5" stroke-linecap="round"/>
-              <circle cx="58" cy="50" r="22" fill="#C4842B"/>
+              <line x1="5" y1="50" x2="95" y2="50" stroke="#2A2825" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="58" cy="50" r="22" fill="#3B4878"/>
             </svg>
             <span class="name">ACME Un-stresser</span>
           </div>
@@ -934,7 +933,7 @@ html, body {
     <div class="scan-arrow">&#10132;</div>
     <div class="extraction-card">
       <div class="card-header">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2A2825" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         Traffic Fine - Escalated Notice
       </div>
       <div class="card-body">
@@ -952,7 +951,7 @@ html, body {
         </div>
         <div class="extraction-field">
           <span class="label">Risk</span>
-          <span class="value" style="color: var(--urgent-red);">Licence seizure</span>
+          <span class="value" style="color: var(--destructive);">Licence seizure</span>
         </div>
         <div class="extraction-explanation">
           This is a speeding fine that's been increased by 50% because you missed the first payment. You have 14 days before they can seize your licence. You can request a payment plan to stop the escalation.
@@ -1026,8 +1025,8 @@ html, body {
 <section class="slide cta-slide" data-duration="0" id="slide-cta">
   <div class="anim logo-group" style="margin-bottom: 20px;">
     <svg class="logo-mark" viewBox="0 0 100 70" fill="none">
-      <line x1="5" y1="50" x2="95" y2="50" stroke="#1C2333" stroke-width="4.5" stroke-linecap="round"/>
-      <circle cx="58" cy="50" r="22" fill="#C4842B"/>
+      <line x1="5" y1="50" x2="95" y2="50" stroke="#2A2825" stroke-width="4.5" stroke-linecap="round"/>
+      <circle cx="58" cy="50" r="22" fill="#3B4878"/>
     </svg>
     <span class="logo-wordmark">ACME Un-stresser</span>
   </div>
