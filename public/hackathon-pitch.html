@@ -296,8 +296,8 @@ html, body {
 
 @media (max-width: 768px) {
   .hero-split {
-    flex-direction: column;
-    gap: 28px;
+    flex-direction: column-reverse;
+    gap: 20px;
   }
   .hero-left { max-width: 100%; min-width: 0; }
   .hero-left .hero-label,
@@ -754,13 +754,56 @@ html, body {
 
 /* ── Responsive ────────────────────────────────────────────────── */
 
-@media (max-width: 640px) {
-  .slide { padding: 28px 20px 20px; }
+@media (max-width: 768px) {
+  .slide {
+    padding: 24px 20px 20px;
+    overflow-y: auto;
+  }
+
+  /* Utility: stack flex layouts vertically */
+  .resp-stack {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  /* Utility: hide on mobile */
+  .resp-hide { display: none !important; }
+
+  /* Stat pills: tighter on mobile */
+  .stat-pill { padding: 12px 14px; min-width: 0; }
+  .stat-pill .num { font-size: 1.3rem; }
+  .stat-pill .lbl { font-size: 0.7rem; }
+
+  /* Scan demo (slide 4) */
   .scan-demo { flex-direction: column; align-items: center; }
   .scan-arrow { transform: rotate(90deg); }
+
+  /* Phone mockup */
   .phone-frame { width: 220px; }
+
+  /* Smaller gaps */
   .stat-row, .metric-row { gap: 12px; }
+
+  /* CTA links stack */
   .cta-links { flex-direction: column; align-items: center; }
+
+  /* Scope metric cards */
+  #slide-scope .metric-card { min-width: 140px !important; }
+
+  /* Hero split: phone above text on mobile */
+  .hero-split { flex-direction: column-reverse; gap: 20px; }
+  .hero-left { max-width: 100%; }
+  .hero-left .hero-label,
+  .hero-left .hero-sublabel { text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .slide { padding: 20px 16px 16px; }
+  .slide-heading { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+  .slide-body { font-size: clamp(0.85rem, 3.5vw, 1rem); }
+  .phone-frame { width: 200px; }
+  .extraction-card { width: 220px; }
+  .action-plan { width: 100%; }
 }
 </style>
 </head>
@@ -777,7 +820,7 @@ html, body {
 <!-- ════════════════════════════════════════════════════════════════ -->
 
 <section class="slide" data-duration="7000" id="slide-hook">
-  <div class="anim" style="display: flex; align-items: center; gap: 48px; width: 100%; max-width: 1080px;">
+  <div class="anim resp-stack" style="display: flex; align-items: center; gap: 48px; width: 100%; max-width: 1080px;">
 
     <div style="flex: 1; min-width: 0;">
       <div style="font-family: var(--display); font-size: clamp(1.4rem, 2.8vw, 2.1rem); font-style: italic; color: var(--muted); line-height: 1.35; max-width: 480px;">
@@ -805,7 +848,7 @@ html, body {
 
   </div>
 
-  <p class="anim slide-body" style="margin-top: 48px; max-width: 100%;">Tax letters, fines, toeslagen decisions, debt correspondence - all arrive in Dutch only.<br>Translated info pages exist. But the forms, the portals, and the letters you need to act on? Still Dutch.</p>
+  <p class="anim slide-body resp-hide" style="margin-top: 48px; max-width: 100%;">Tax letters, fines, toeslagen decisions, debt correspondence - all arrive in Dutch only.<br>Translated info pages exist. But the forms, the portals, and the letters you need to act on? Still Dutch.</p>
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
@@ -813,7 +856,7 @@ html, body {
 <!-- ════════════════════════════════════════════════════════════════ -->
 
 <section class="slide" data-duration="8000" id="slide-investment">
-  <div class="anim" style="display: flex; gap: 48px; width: 100%; max-width: 1080px; align-items: flex-start;">
+  <div class="anim resp-stack" style="display: flex; gap: 48px; width: 100%; max-width: 1080px; align-items: flex-start;">
 
     <div style="flex: 1; min-width: 0;">
       <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); opacity: 0.5; margin-bottom: 12px;">The investment</div>
@@ -830,7 +873,7 @@ html, body {
       </div>
     </div>
 
-    <div style="width: 1px; background: var(--border); align-self: stretch;"></div>
+    <div class="resp-hide" style="width: 1px; background: var(--border); align-self: stretch;"></div>
 
     <div style="flex: 1; min-width: 0;">
       <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); opacity: 0.5; margin-bottom: 12px;">The drop-off</div>
@@ -877,7 +920,7 @@ html, body {
           Photograph the letters you're afraid to open.<br>
           Understand what they mean - in any language.
         </div>
-        <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.8; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+        <div class="resp-hide" style="font-size: 0.88rem; color: var(--muted); line-height: 1.8; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
           We guide you through the scary world of government bureaucracy.<br>
           We remind you of key dates.<br>
           Let us handle the complications for you.
@@ -1011,7 +1054,7 @@ html, body {
   <h2 class="anim slide-heading" style="margin-bottom: 4px;">Claude never does maths.</h2>
   <p class="anim slide-body" style="margin-bottom: 0;">The LLM reasons about your situation. The code does the arithmetic. This is a design principle, not a shortcut.</p>
 
-  <div class="anim" style="display: flex; gap: 48px; width: 100%; max-width: 860px; margin-top: 28px; align-items: flex-start;">
+  <div class="anim resp-stack" style="display: flex; gap: 48px; width: 100%; max-width: 860px; margin-top: 28px; align-items: flex-start;">
     <div style="flex: 1; min-width: 0;">
       <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--primary);">Claude</div>
       <div style="font-size: 0.88rem; color: var(--muted); line-height: 2.1;">
@@ -1022,7 +1065,7 @@ html, body {
         Formal letter generation
       </div>
     </div>
-    <div style="width: 1px; background: var(--border); align-self: stretch;"></div>
+    <div class="resp-hide" style="width: 1px; background: var(--border); align-self: stretch;"></div>
     <div style="flex: 1; min-width: 0;">
       <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--text);">Deterministic code</div>
       <div style="font-size: 0.88rem; color: var(--muted); line-height: 2.1;">
@@ -1044,7 +1087,7 @@ html, body {
   <h2 class="anim slide-heading" style="margin-bottom: 4px;">Benefits can cancel each other out.</h2>
   <p class="anim slide-body" style="margin-bottom: 0;">No human advisor runs every combination. The code does.</p>
 
-  <div class="anim" style="display: flex; gap: 24px; width: 100%; max-width: 760px; margin-top: 24px; align-items: stretch;">
+  <div class="anim resp-stack" style="display: flex; gap: 24px; width: 100%; max-width: 760px; margin-top: 24px; align-items: stretch;">
     <div style="flex: 1; min-width: 0; background: var(--card-bg); border-top: 2px solid var(--destructive); padding: 22px;">
       <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--destructive); font-weight: 700; margin-bottom: 14px;">Naive advice</div>
       <div style="font-size: 0.85rem; color: var(--muted); line-height: 1.9;">
@@ -1117,20 +1160,20 @@ html, body {
   <h2 class="anim slide-heading">Try it yourself</h2>
 
   <div class="anim cta-links">
+    <a class="cta-link" href="personas.html" target="_blank">
+      <svg class="link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div class="link-label">Personas</div>
+      <div class="link-desc">4 real-world scenarios</div>
+    </a>
     <a class="cta-link" href="https://hackathon-65da4.web.app" target="_blank">
       <svg class="link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       <div class="link-label">Live App</div>
-      <div class="link-desc">Try the working prototype</div>
+      <div class="link-desc">Try the app with the personas</div>
     </a>
     <a class="cta-link" href="https://github.com/no1plats/geldwijzer" target="_blank">
       <svg class="link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       <div class="link-label">GitHub</div>
       <div class="link-desc">View the source code</div>
-    </a>
-    <a class="cta-link" href="personas.html" target="_blank">
-      <svg class="link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <div class="link-label">Personas</div>
-      <div class="link-desc">4 real-world scenarios</div>
     </a>
   </div>
 
