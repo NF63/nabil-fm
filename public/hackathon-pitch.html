@@ -716,6 +716,27 @@ html, body {
   letter-spacing: 0.04em;
 }
 
+/* ── Nav arrows ────────────────────────────────────────────────── */
+
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 101;
+  background: none;
+  border: none;
+  color: var(--border);
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 20px 12px;
+  transition: color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-arrow:hover { color: var(--primary); }
+.nav-arrow-left { left: 8px; }
+.nav-arrow-right { right: 8px; }
+
 /* ── Pause overlay ─────────────────────────────────────────────── */
 
 .pause-indicator {
@@ -877,44 +898,9 @@ html, body {
       </div>
     </div>
     <div class="anim hero-right">
-      <div class="phone-frame">
-        <div class="phone-notch"></div>
-        <div class="phone-content">
-          <div class="phone-header">
-            <svg class="mini-logo" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="512" height="512" rx="64" fill="#0F1833"/>
-              <path d="M249.398 92.253C250.437 92.192 251.485 92.142 252.525 92.101C306.814 89.998 360.184 120.922 386.412 168.179C399.827 192.352 404.842 214.161 405.754 241.487L264.58 241.5L106.596 241.502C107.763 159.948 168.265 97.412 249.398 92.253Z" fill="#6F52F3"/>
-              <path d="M106.655 262.18L405.706 262.157L405.714 282.429C372.422 282.865 338.267 282.451 304.863 282.45L106.656 282.443L106.655 262.18Z" fill="#6F52F3"/>
-              <path d="M106.667 303.008L405.698 303.023L405.722 318.32L106.66 318.314L106.667 303.008Z" fill="#6F52F3"/>
-              <path d="M106.655 338.967L405.642 338.959L405.73 349.004L106.723 349.047L106.655 338.967Z" fill="#6F52F3"/>
-              <path d="M106.482 375.02C106.686 371.743 106.086 371.31 107.819 369.671C121.968 369.019 139.79 369.504 154.149 369.504L241.743 369.516L353.944 369.539C361.959 369.542 400.891 368.627 405.082 370.428C406.002 372.593 405.714 371.436 405.418 374.155C404.13 374.844 403.666 375.482 402.674 376.6L402.066 377.298C384.517 378.025 363.935 377.464 346.169 377.438L245.286 377.431L158.426 377.472C142.957 377.513 127.271 377.561 111.787 377.505C109.546 377.497 108.138 376.421 106.482 375.02Z" fill="#6F52F3"/>
-              <path d="M106.154 395.31C127.003 394.242 155.354 395.112 176.717 395.106L314.518 395.073L378.725 395.08C382.797 395.08 402.347 394.811 405.138 395.499L406.154 398.031C385.117 399.07 357.296 398.23 335.803 398.236L199.614 398.273L135.23 398.269C130.549 398.267 110.573 398.555 107.236 397.836L106.154 395.31Z" fill="#6F52F3"/>
-            </svg>
-            <span class="name">Orizon</span>
-          </div>
-          <div class="chat-bubble">
-            I looked at your situation and found something important, Daan.
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-item">
-              <span class="name">Zorgtoeslag</span>
-              <span class="amount">EUR 129/mo</span>
-            </div>
-            <div class="benefit-item">
-              <span class="name">Huurtoeslag</span>
-              <span class="amount">~EUR 350/mo</span>
-            </div>
-            <div class="benefit-item">
-              <span class="name">Kwijtschelding</span>
-              <span class="amount">EUR 445/yr</span>
-            </div>
-            <div class="benefit-total">
-              <span>You're missing</span>
-              <span>EUR 6,193/yr</span>
-            </div>
-          </div>
-          <div class="phone-cta">What should I do first?</div>
-        </div>
+      <div style="width: 260px; border-radius: 30px; border: 2px solid var(--border); background: #faf9f6; overflow: hidden; box-shadow: 0 12px 40px rgba(28,35,51,0.08);">
+        <div style="width: 90px; height: 24px; background: var(--text); border-radius: 0 0 14px 14px; margin: 0 auto;"></div>
+        <img src="orizon-cjib-plan.png" alt="Orizon CJIB payment plan with phone script" style="width: 100%; display: block;">
       </div>
     </div>
   </div>
@@ -1028,7 +1014,7 @@ html, body {
         <div class="link-label">Live App</div>
         <div class="link-desc">Try the app with the personas</div>
       </a>
-      <a class="cta-link" href="https://github.com/no1plats/geldwijzer" target="_blank">
+      <a class="cta-link" href="https://github.com/no1plats/orizon" target="_blank">
         <svg class="link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         <div class="link-label">GitHub</div>
         <div class="link-desc">View the source code</div>
@@ -1131,6 +1117,9 @@ html, body {
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
+
+<button class="nav-arrow nav-arrow-left" id="navLeft" aria-label="Previous slide">&#8249;</button>
+<button class="nav-arrow nav-arrow-right" id="navRight" aria-label="Next slide">&#8250;</button>
 
 <div class="pause-indicator" id="pauseIndicator"><span class="pause-label">Paused - click to resume</span></div>
 
@@ -1248,7 +1237,7 @@ html, body {
   // ── Event listeners ────────────────────────────────────────────
   document.addEventListener('click', function (e) {
     // Don't toggle pause when clicking links, details, or CTA buttons
-    if (e.target.closest('a, button, details, summary, .cta-link, .invite-btn, .expand-sections')) return;
+    if (e.target.closest('a, button, details, summary, .cta-link, .invite-btn, .expand-sections, .nav-arrow')) return;
     togglePause();
   });
 
@@ -1274,6 +1263,10 @@ html, body {
       else prevSlide();
     }
   }, { passive: true });
+
+  // ── Nav arrows ──────────────────────────────────────────────────
+  document.getElementById('navLeft').addEventListener('click', prevSlide);
+  document.getElementById('navRight').addEventListener('click', nextSlide);
 
   // ── Start ──────────────────────────────────────────────────────
   showSlide(0);
