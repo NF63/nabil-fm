@@ -922,7 +922,7 @@ html, body {
               <span>EUR 6,193/yr</span>
             </div>
           </div>
-          <div class="phone-cta">Show me how to apply</div>
+          <div class="phone-cta">What should I do first?</div>
         </div>
       </div>
     </div>
@@ -1004,29 +1004,100 @@ html, body {
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
-<!-- Slide 7: How it works                                           -->
+<!-- Slide 7: Architecture - Claude never does maths                 -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 
-<section class="slide" data-duration="6000" id="slide-how">
-  <h2 class="anim slide-heading">Claude reasons. Code calculates.<br><span class="highlight">No AI guessing on numbers.</span></h2>
-  <div class="metric-row">
-    <div class="anim metric-card">
-      <div class="num">24</div>
-      <div class="lbl">benefits mapped<br>with 2026 thresholds</div>
+<section class="slide" data-duration="8000" id="slide-architecture">
+  <h2 class="anim slide-heading" style="margin-bottom: 4px;">Claude never does maths.</h2>
+  <p class="anim slide-body" style="margin-bottom: 0;">The LLM reasons about your situation. The code does the arithmetic. This is a design principle, not a shortcut.</p>
+
+  <div class="anim" style="display: flex; gap: 48px; width: 100%; max-width: 860px; margin-top: 28px; align-items: flex-start;">
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--primary);">Claude</div>
+      <div style="font-size: 0.88rem; color: var(--muted); line-height: 2.1;">
+        Multilingual conversation<br>
+        Document vision (reads your letters)<br>
+        Eligibility reasoning<br>
+        Plain-language explanations<br>
+        Formal letter generation
+      </div>
     </div>
-    <div class="anim metric-card">
-      <div class="num">20</div>
-      <div class="lbl">document types<br>read by Claude Vision</div>
-    </div>
-    <div class="anim metric-card">
-      <div class="num">3</div>
-      <div class="lbl">channels to act<br>online / phone / post</div>
+    <div style="width: 1px; background: var(--border); align-self: stretch;"></div>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--text);">Deterministic code</div>
+      <div style="font-size: 0.88rem; color: var(--muted); line-height: 2.1;">
+        23 benefit calculators<br>
+        Hardcoded 2026 thresholds<br>
+        Published government formulas<br>
+        Cross-benefit conflict detection<br>
+        Zero LLM arithmetic
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
-<!-- Slide 10: CTA                                                   -->
+<!-- Slide 8: Conflict detection                                     -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+
+<section class="slide" data-duration="8000" id="slide-conflict">
+  <h2 class="anim slide-heading" style="margin-bottom: 4px;">Benefits can cancel each other out.</h2>
+  <p class="anim slide-body" style="margin-bottom: 0;">No human advisor runs every combination. The code does.</p>
+
+  <div class="anim" style="display: flex; gap: 24px; width: 100%; max-width: 760px; margin-top: 24px; align-items: stretch;">
+    <div style="flex: 1; min-width: 0; background: var(--card-bg); border-top: 2px solid var(--destructive); padding: 22px;">
+      <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--destructive); font-weight: 700; margin-bottom: 14px;">Naive advice</div>
+      <div style="font-size: 0.85rem; color: var(--muted); line-height: 1.9;">
+        "You qualify for zorgtoeslag. Apply."<br>
+        <strong style="color: var(--primary);">+EUR 360/yr</strong>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--muted); line-height: 1.9; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);">
+        But zorgtoeslag counts as income.<br>
+        Pushes you over kwijtschelding threshold.<br>
+        <strong style="color: var(--destructive);">-EUR 445/yr</strong> in tax exemptions
+      </div>
+      <div style="font-family: var(--display); font-size: 1.3rem; color: var(--destructive); margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);">Net: -EUR 85/yr</div>
+    </div>
+
+    <div style="flex: 1; min-width: 0; background: var(--card-bg); border-top: 2px solid var(--success); padding: 22px;">
+      <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--success); font-weight: 700; margin-bottom: 14px;">Orizon's call</div>
+      <div style="font-size: 0.85rem; color: var(--muted); line-height: 1.9;">
+        "Skip zorgtoeslag this year."<br>
+        Keep kwijtschelding: <strong style="color: var(--success);">+EUR 445/yr</strong>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--muted); line-height: 1.9; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);">
+        Recheck next year when income changes.<br>
+        The system runs every combination<br>
+        and picks the optimal order.
+      </div>
+      <div style="font-family: var(--display); font-size: 1.3rem; color: var(--success); margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);">Net: +EUR 445/yr</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- Slide 10: Scope                                                 -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+
+<section class="slide" data-duration="7000" id="slide-scope">
+  <h2 class="anim slide-heading">Built for Amsterdam. Designed for anywhere.</h2>
+
+  <div class="anim metric-row" style="margin-top: 28px;">
+    <div class="metric-card" style="min-width: 180px;">
+      <div class="num">23</div>
+      <div class="lbl">benefits modelled<br>with 2026 thresholds</div>
+    </div>
+    <div class="metric-card" style="min-width: 180px;">
+      <div class="num">7</div>
+      <div class="lbl">with full<br>application flows</div>
+    </div>
+  </div>
+
+  <p class="anim slide-body" style="margin-top: 24px;">The architecture isn't Amsterdam-specific.<br>Adding a new municipality means adding new thresholds, not rebuilding.</p>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- Slide 11: CTA                                                   -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 
 <section class="slide cta-slide" data-duration="0" id="slide-cta">
@@ -1133,7 +1204,7 @@ html, body {
         </ul>
         <h4>Coverage</h4>
         <ul>
-          <li><strong>24 benefits</strong> documented with complete 2026 thresholds (national + Amsterdam municipal)</li>
+          <li><strong>23 benefits</strong> documented with complete 2026 thresholds (national + Amsterdam municipal)</li>
           <li><strong>20 document types</strong> classified (CJIB, Belastingdienst, gemeente, DUO, SVB, CAK, energy, incasso, health insurer)</li>
           <li><strong>Structured output</strong> with Zod schema validation - type-safe extraction, not free-form text</li>
           <li><strong>Security:</strong> prompt injection defence in document reader (untrusted user input)</li>
