@@ -1,0 +1,69 @@
+<!-- Parked slides - removed from hackathon-pitch.html -->
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- Action Plan slide                                               -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+
+<section class="slide" data-duration="7000" id="slide-demo-plan">
+  <h2 class="anim slide-heading" style="margin-bottom: 4px;">A prioritised plan. Not a to-do list.</h2>
+  <p class="anim slide-body" style="margin-bottom: 0;">Every action ranked by urgency. Letters ready to send.</p>
+  <div class="anim action-plan">
+    <div class="action-item">
+      <div class="action-urgency urgent"></div>
+      <div class="action-content">
+        <div class="title">Request CJIB payment plan</div>
+        <div class="desc">EUR 464 over 12 months - letter generated, ready to send</div>
+        <span class="badge badge-urgent">Act today - licence seizure in 14 days</span>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-urgency week"></div>
+      <div class="action-content">
+        <div class="title">Apply for zorgtoeslag</div>
+        <div class="desc">EUR 129/month - you qualify but aren't receiving it</div>
+        <span class="badge badge-week">This week</span>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-urgency month"></div>
+      <div class="action-content">
+        <div class="title">Request DUO repayment pause</div>
+        <div class="desc">Aflosvrije periode - up to 5 years while you stabilise</div>
+        <span class="badge badge-month">This month</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- Architecture split slide                                        -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+
+<section class="slide" data-duration="8000" id="slide-architecture">
+  <h2 class="anim slide-heading" style="margin-bottom: 4px;">Claude never does maths.</h2>
+  <p class="anim slide-body" style="margin-bottom: 0;">The LLM reasons about your situation. The code does the arithmetic. This is a design principle, not a shortcut.</p>
+
+  <div class="anim resp-stack" style="display: flex; gap: 48px; width: 100%; max-width: 860px; margin-top: 28px; align-items: flex-start;">
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--primary);">Claude</div>
+      <div style="font-size: 0.88rem; color: var(--muted); line-height: 2.1;">
+        Multilingual conversation<br>
+        Document vision (reads your letters)<br>
+        Eligibility reasoning<br>
+        Plain-language explanations<br>
+        Formal letter generation
+      </div>
+    </div>
+    <div class="resp-hide" style="width: 1px; background: var(--border); align-self: stretch;"></div>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--text);">Deterministic code</div>
+      <div style="font-size: 0.88rem; color: var(--muted); line-height: 2.1;">
+        23 benefit calculators<br>
+        Hardcoded 2026 thresholds<br>
+        Published government formulas<br>
+        Cross-benefit conflict detection<br>
+        Zero LLM arithmetic
+      </div>
+    </div>
+  </div>
+</section>
