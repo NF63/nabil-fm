@@ -1068,8 +1068,7 @@ html, body {
   </div>
 
   <div class="anim invite-cta">
-    <p class="text">Want the full story?</p>
-    <a class="invite-btn" href="mailto:nabil.fahim@booking.com?subject=Orizon%20-%20Full%20Pitch%20Request">Invite us for the full pitch</a>
+    <button class="invite-btn" onclick="fireConfetti(this)">We made this in 24 hours</button>
   </div>
 
   <div class="anim expand-sections">
@@ -1305,6 +1304,45 @@ html, body {
   // ── Start ──────────────────────────────────────────────────────
   showSlide(0);
   rafId = requestAnimationFrame(tick);
+})();
+
+function fireConfetti(btn) {
+  btn.style.transform = 'scale(0.95)';
+  setTimeout(() => btn.style.transform = '', 150);
+  var count = 150;
+  var colors = ['#6F52F3', '#9B56F3', '#B89530', '#2D7A56', '#FAF9F6', '#d5d0c7'];
+  for (var i = 0; i < count; i++) {
+    var el = document.createElement('div');
+    var size = Math.random() * 8 + 4;
+    var x = Math.random() * window.innerWidth;
+    var drift = (Math.random() - 0.5) * 400;
+    var dur = Math.random() * 2 + 1.5;
+    var delay = Math.random() * 0.4;
+    var rot = Math.random() * 720 - 360;
+    el.style.cssText = 'position:fixed;top:-10px;left:' + x + 'px;width:' + size + 'px;height:' + (size * (Math.random() * 0.6 + 0.4)) + 'px;background:' + colors[Math.floor(Math.random() * colors.length)] + ';border-radius:' + (Math.random() > 0.5 ? '50%' : '1px') + ';pointer-events:none;z-index:9999;opacity:1;animation:confetti-fall ' + dur + 's ease-out ' + delay + 's forwards;';
+    el.dataset.drift = drift;
+    el.dataset.rot = rot;
+    document.body.appendChild(el);
+    setTimeout(function(e) { e.remove(); }, (dur + delay) * 1000 + 100, el);
+  }
+}
+
+(function() {
+  var style = document.createElement('style');
+  style.textContent = '@keyframes confetti-fall { 0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(' + (window.innerHeight + 50) + 'px) translateX(var(--drift, 100px)) rotate(var(--rot, 360deg)); opacity: 0; } }';
+  document.head.appendChild(style);
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      m.addedNodes.forEach(function(n) {
+        if (n.dataset && n.dataset.drift !== undefined) {
+          n.style.setProperty('--drift', n.dataset.drift + 'px');
+          n.style.setProperty('--rot', n.dataset.rot + 'deg');
+        }
+      });
+    });
+  });
+  observer.observe(document.body, { childList: true });
 })();
 </script>
 </body>
